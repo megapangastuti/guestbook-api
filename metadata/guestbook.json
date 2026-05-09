@@ -2,14 +2,14 @@
   "version": "2.0.0",
   "moduleName": "guestbook",
   "createdAt": "2026-05-09T15:17:08.090Z",
-  "updatedAt": "2026-05-09T15:17:08.116Z",
+  "updatedAt": "2026-05-09T15:59:30.236Z",
   "databaseType": "postgres",
   "endpoints": {
     "users": {
       "version": "2.0.0",
       "type": "module",
       "createdAt": "2026-05-09T15:17:08.116Z",
-      "updatedAt": "2026-05-09T15:17:08.116Z",
+      "updatedAt": "2026-05-09T15:59:30.236Z",
       "path": "src/modules/guestbook/users.js",
       "modelPath": "src/models/guestbook/users.js",
       "tableName": "users",
@@ -37,18 +37,92 @@
       "hasFilters": false,
       "hasSearchColumns": false,
       "statistics": {
+        "timesGenerated": 7,
+        "lastGenerated": "2026-05-09T15:59:30.236Z",
+        "lastModified": "2026-05-09T15:59:30.236Z"
+      }
+    },
+    "visitors": {
+      "version": "2.0.0",
+      "type": "module",
+      "createdAt": "2026-05-09T15:43:45.309Z",
+      "updatedAt": "2026-05-09T15:43:45.309Z",
+      "path": "src/modules/guestbook/visitors.js",
+      "modelPath": "src/models/guestbook/visitors.js",
+      "tableName": "visitors",
+      "databaseType": "postgres",
+      "actions": {
+        "datatables": true,
+        "create": true,
+        "update": true,
+        "delete": true,
+        "first": true,
+        "lookup": true,
+        "read": true,
+        "export": false,
+        "import": false,
+        "adjust": false,
+        "aggregate": false,
+        "createComposite": false,
+        "updateComposite": false,
+        "readComposite": false,
+        "workflow": false
+      },
+      "fieldCount": 9,
+      "hasAdvancedQueries": false,
+      "hasNestedQueries": false,
+      "hasFilters": false,
+      "hasSearchColumns": false,
+      "statistics": {
         "timesGenerated": 1,
-        "lastGenerated": "2026-05-09T15:17:08.116Z",
-        "lastModified": "2026-05-09T15:17:08.116Z"
+        "lastGenerated": "2026-05-09T15:43:45.309Z",
+        "lastModified": "2026-05-09T15:43:45.309Z"
+      }
+    },
+    "visits": {
+      "version": "2.0.0",
+      "type": "module",
+      "createdAt": "2026-05-09T15:43:49.907Z",
+      "updatedAt": "2026-05-09T15:43:49.907Z",
+      "path": "src/modules/guestbook/visits.js",
+      "modelPath": "src/models/guestbook/visits.js",
+      "tableName": "visits",
+      "databaseType": "postgres",
+      "actions": {
+        "datatables": true,
+        "create": true,
+        "update": true,
+        "delete": true,
+        "first": true,
+        "lookup": true,
+        "read": true,
+        "export": false,
+        "import": false,
+        "adjust": false,
+        "aggregate": false,
+        "createComposite": false,
+        "updateComposite": false,
+        "readComposite": false,
+        "workflow": true
+      },
+      "fieldCount": 18,
+      "hasAdvancedQueries": false,
+      "hasNestedQueries": false,
+      "hasFilters": false,
+      "hasSearchColumns": false,
+      "statistics": {
+        "timesGenerated": 1,
+        "lastGenerated": "2026-05-09T15:43:49.907Z",
+        "lastModified": "2026-05-09T15:43:49.907Z"
       }
     }
   },
   "statistics": {
-    "totalEndpoints": 1,
+    "totalEndpoints": 3,
     "endpointsByType": {
-      "module": 1
+      "module": 3
     },
-    "lastGenerated": "2026-05-09T15:17:08.116Z"
+    "lastGenerated": "2026-05-09T15:59:30.236Z"
   },
   "config": {
     "autoBackup": false,

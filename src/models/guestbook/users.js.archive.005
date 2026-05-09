@@ -5,7 +5,7 @@ const path = require('path');
 // AdvancedFilterHelper dihapus — semua filtering ditangani oleh buildObjectFilterClause dan buildComplexWhereClause
 
 /**
- * Users Model - Auto-generated on 2026-05-09 14:59:22
+ * Users Model - Auto-generated on 2026-05-09 15:43:19
  *
  * Model untuk users yang mewarisi fungsi-fungsi dari BaseModel
  * Table: users
@@ -123,7 +123,7 @@ class UsersModel extends BaseModel {
       viewName: 'users',
       fieldCount: 7,
       databaseType: 'postgres',
-      generated: '2026-05-09 14:59:22',
+      generated: '2026-05-09 15:43:19',
       features: ["custom_where"]
     };
   }

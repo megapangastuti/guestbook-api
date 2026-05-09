@@ -35,5 +35,3 @@ JOIN visitors vis
 
 LEFT JOIN users u
     ON u.id = vt.created_by
-
-ORDER BY vt.check_in_time DESC;

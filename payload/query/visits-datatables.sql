@@ -34,4 +34,4 @@ JOIN visitors vis
     ON vis.id = vt.visitor_id
 
 LEFT JOIN users u
-    ON u.id = vt.created_by;
+    ON u.id = vt.created_by

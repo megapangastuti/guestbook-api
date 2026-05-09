@@ -166,6 +166,451 @@
           ]
         }
       }
+    },
+    "visitors": {
+      "tableName": "visitors",
+      "displayName": "Visitors",
+      "action": {
+        "datatables": true,
+        "create": true,
+        "update": true,
+        "delete": true,
+        "first": true,
+        "lookup": true,
+        "read": true,
+        "export": false,
+        "import": false,
+        "adjust": false,
+        "aggregate": false,
+        "createComposite": false,
+        "updateComposite": false,
+        "readComposite": false,
+        "workflow": false
+      },
+      "primaryKey": "id",
+      "fieldName": [
+        "id",
+        "visitor_code",
+        "name",
+        "phone",
+        "email",
+        "company",
+        "identity_number",
+        "created_at",
+        "updated_at"
+      ],
+      "fieldValidation": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "constraints": {
+            "primaryKey": true,
+            "required": true,
+            "autoGenerate": true
+          }
+        },
+        {
+          "name": "visitor_code",
+          "type": "string",
+          "constraints": {
+            "required": true,
+            "maxLength": 30,
+            "unique": true,
+            "trim": true,
+            "uppercase": true
+          }
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "constraints": {
+            "required": true,
+            "maxLength": 100,
+            "trim": true
+          }
+        },
+        {
+          "name": "phone",
+          "type": "string",
+          "constraints": {
+            "required": false,
+            "maxLength": 20,
+            "trim": true
+          }
+        },
+        {
+          "name": "email",
+          "type": "string",
+          "constraints": {
+            "required": false,
+            "format": "email",
+            "maxLength": 150,
+            "trim": true,
+            "lowercase": true
+          }
+        },
+        {
+          "name": "company",
+          "type": "string",
+          "constraints": {
+            "required": false,
+            "maxLength": 150,
+            "trim": true
+          }
+        },
+        {
+          "name": "identity_number",
+          "type": "string",
+          "constraints": {
+            "required": false,
+            "maxLength": 100,
+            "trim": true
+          }
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "constraints": {
+            "required": true,
+            "default": "CURRENT_TIMESTAMP",
+            "readonly": true
+          }
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "constraints": {
+            "required": true,
+            "default": "CURRENT_TIMESTAMP",
+            "readonly": true,
+            "autoUpdate": true
+          }
+        }
+      ],
+      "samples": {
+        "create": {
+          "visitor_code": "DMO001",
+          "name": "Demo Name",
+          "phone": "+62812345678",
+          "email": "demo@example.com",
+          "company": "Demo Company",
+          "identity_number": "Demo identity_number",
+          "created_at": "CURRENT_TIMESTAMP",
+          "updated_at": "CURRENT_TIMESTAMP"
+        },
+        "update": {
+          "visitor_code": "DMO001",
+          "name": "Updated Demo Name",
+          "phone": "+62812345678",
+          "email": "updated@example.com",
+          "company": "Demo Company",
+          "identity_number": "Demo identity_number",
+          "created_at": "CURRENT_TIMESTAMP",
+          "updated_at": "CURRENT_TIMESTAMP"
+        },
+        "delete": {
+          "where": [
+            {
+              "key": "id",
+              "value": "sample-id"
+            }
+          ]
+        },
+        "get": {
+          "where": [
+            {
+              "key": "id",
+              "value": "sample-id"
+            }
+          ],
+          "select": [
+            "id",
+            "visitor_code",
+            "name",
+            "phone",
+            "email",
+            "company",
+            "identity_number",
+            "created_at",
+            "updated_at"
+          ]
+        },
+        "read": {
+          "page": 1,
+          "per_page": 10,
+          "search_value": "",
+          "search_by": "visitor_code"
+        },
+        "datatables": {
+          "draw": 1,
+          "start": 0,
+          "length": 10,
+          "search": {
+            "value": ""
+          }
+        },
+        "lookup": {
+          "select": [
+            "id",
+            "visitor_code"
+          ]
+        }
+      }
+    },
+    "visits": {
+      "tableName": "visits",
+      "displayName": "Visits",
+      "action": {
+        "datatables": true,
+        "create": true,
+        "update": true,
+        "delete": true,
+        "first": true,
+        "lookup": true,
+        "read": true,
+        "export": false,
+        "import": false,
+        "adjust": false,
+        "aggregate": false,
+        "createComposite": false,
+        "updateComposite": false,
+        "readComposite": false,
+        "workflow": true
+      },
+      "primaryKey": "id",
+      "fieldName": [
+        "id",
+        "visit_number",
+        "visitor_id",
+        "visitor_master_id",
+        "visitor_code",
+        "visitor_name",
+        "company",
+        "host_name",
+        "purpose",
+        "check_in_time",
+        "check_out_time",
+        "status",
+        "created_by",
+        "receptionist_id",
+        "receptionist_name",
+        "notes",
+        "created_at",
+        "updated_at"
+      ],
+      "fieldValidation": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "constraints": {
+            "primaryKey": true,
+            "required": true,
+            "autoGenerate": true
+          }
+        },
+        {
+          "name": "visit_number",
+          "type": "string",
+          "constraints": {
+            "required": true,
+            "maxLength": 50,
+            "unique": true,
+            "trim": true,
+            "uppercase": true
+          }
+        },
+        {
+          "name": "visitor_id",
+          "type": "uuid",
+          "constraints": {
+            "required": true,
+            "foreignKey": {
+              "table": "visitors",
+              "field": "id"
+            }
+          }
+        },
+        {
+          "name": "host_name",
+          "type": "string",
+          "constraints": {
+            "required": true,
+            "maxLength": 100,
+            "trim": true
+          }
+        },
+        {
+          "name": "purpose",
+          "type": "string",
+          "constraints": {
+            "required": false,
+            "maxLength": 500,
+            "trim": true
+          }
+        },
+        {
+          "name": "check_in_time",
+          "type": "timestamp",
+          "constraints": {
+            "required": true,
+            "default": "CURRENT_TIMESTAMP"
+          }
+        },
+        {
+          "name": "check_out_time",
+          "type": "timestamp",
+          "constraints": {
+            "required": false
+          }
+        },
+        {
+          "name": "status",
+          "type": "enum",
+          "constraints": {
+            "required": true,
+            "enum": [
+              "CHECKED_IN",
+              "CHECKED_OUT"
+            ],
+            "default": "CHECKED_IN"
+          }
+        },
+        {
+          "name": "created_by",
+          "type": "uuid",
+          "constraints": {
+            "required": false,
+            "foreignKey": {
+              "table": "users",
+              "field": "id"
+            }
+          }
+        },
+        {
+          "name": "notes",
+          "type": "string",
+          "constraints": {
+            "required": false,
+            "maxLength": 1000,
+            "trim": true
+          }
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "constraints": {
+            "required": true,
+            "default": "CURRENT_TIMESTAMP",
+            "readonly": true
+          }
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "constraints": {
+            "required": true,
+            "default": "CURRENT_TIMESTAMP",
+            "readonly": true,
+            "autoUpdate": true
+          }
+        }
+      ],
+      "samples": {
+        "create": {
+          "visit_number": "Demo visit_number",
+          "visitor_id": "sample-uuid-replace-with-real-id",
+          "visitor_master_id": "Demo visitor_master_id",
+          "visitor_code": "DMO001",
+          "visitor_name": "Demo Name",
+          "company": "Demo Company",
+          "host_name": "Demo Name",
+          "purpose": "Demo purpose",
+          "check_in_time": "CURRENT_TIMESTAMP",
+          "check_out_time": "2026-05-09T15:43:49.933Z",
+          "status": "CHECKED_IN",
+          "created_by": "sample-uuid-replace-with-real-id",
+          "receptionist_id": "Demo receptionist_id",
+          "receptionist_name": "Demo Name",
+          "notes": "Demo notes",
+          "created_at": "CURRENT_TIMESTAMP",
+          "updated_at": "CURRENT_TIMESTAMP"
+        },
+        "update": {
+          "visit_number": "Demo visit_number",
+          "visitor_id": "sample-uuid-replace-with-real-id",
+          "visitor_master_id": "Demo visitor_master_id",
+          "visitor_code": "DMO001",
+          "visitor_name": "Updated Demo Name",
+          "company": "Demo Company",
+          "host_name": "Updated Demo Name",
+          "purpose": "Demo purpose",
+          "check_in_time": "CURRENT_TIMESTAMP",
+          "check_out_time": "2026-05-09T15:43:49.933Z",
+          "status": "CHECKED_IN",
+          "created_by": "sample-uuid-replace-with-real-id",
+          "receptionist_id": "Demo receptionist_id",
+          "receptionist_name": "Updated Demo Name",
+          "notes": "Demo notes",
+          "created_at": "CURRENT_TIMESTAMP",
+          "updated_at": "CURRENT_TIMESTAMP"
+        },
+        "delete": {
+          "where": [
+            {
+              "key": "id",
+              "value": "sample-id"
+            }
+          ]
+        },
+        "get": {
+          "where": [
+            {
+              "key": "id",
+              "value": "sample-id"
+            }
+          ],
+          "select": [
+            "id",
+            "visit_number",
+            "visitor_id",
+            "visitor_master_id",
+            "visitor_code",
+            "visitor_name",
+            "company",
+            "host_name",
+            "purpose",
+            "check_in_time",
+            "check_out_time",
+            "status",
+            "created_by",
+            "receptionist_id",
+            "receptionist_name",
+            "notes",
+            "created_at",
+            "updated_at"
+          ]
+        },
+        "read": {
+          "page": 1,
+          "per_page": 10,
+          "search_value": "",
+          "search_by": "visit_number"
+        },
+        "datatables": {
+          "draw": 1,
+          "start": 0,
+          "length": 10,
+          "search": {
+            "value": ""
+          }
+        },
+        "lookup": {
+          "select": [
+            "id",
+            "visit_number"
+          ]
+        }
+      }
     }
   },
   "processors": {}

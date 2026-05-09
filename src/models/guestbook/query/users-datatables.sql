@@ -5,4 +5,4 @@ SELECT
     u.role,
     u.created_at,
     u.updated_at
-FROM users u;
+FROM users u

@@ -14,7 +14,7 @@
     }
   ],
   "metadata": {
-    "module": "guestbook",
+    "module": "auth",
     "description": "Authentication endpoints for login and register"
   }
 }

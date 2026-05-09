@@ -1,0 +1,10 @@
+{
+  "visitor_code": "DMO001",
+  "name": "Updated Demo Name",
+  "phone": "+62812345678",
+  "email": "updated@example.com",
+  "company": "Demo Company",
+  "identity_number": "Demo identity_number",
+  "created_at": "CURRENT_TIMESTAMP",
+  "updated_at": "CURRENT_TIMESTAMP"
+}

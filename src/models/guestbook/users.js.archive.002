@@ -5,11 +5,11 @@ const path = require('path');
 // AdvancedFilterHelper dihapus — semua filtering ditangani oleh buildObjectFilterClause dan buildComplexWhereClause
 
 /**
- * Users Model - Auto-generated on 2026-05-09 10:46:21
+ * Users Model - Auto-generated on 2026-05-09 15:37:22
  *
  * Model untuk users yang mewarisi fungsi-fungsi dari BaseModel
  * Table: users
- * Fields: 5 fields
+ * Fields: 7 fields
  * Database: PostgreSQL
  */
 class UsersModel extends BaseModel {
@@ -23,7 +23,9 @@ class UsersModel extends BaseModel {
       'name',
       'email',
       'password',
-      'role'
+      'role',
+      'created_at',
+      'updated_at'
     ];
 
     // Definisikan datatablesWhere sesuai payload
@@ -54,8 +56,7 @@ class UsersModel extends BaseModel {
         constraints: {
             "primaryKey": true,
             "required": true,
-            "autoGenerate": true,
-            "readonly": true
+            "autoGenerate": true
       }
       },
       'name': {
@@ -81,9 +82,7 @@ class UsersModel extends BaseModel {
         type: 'string',
         constraints: {
             "required": true,
-            "minLength": 8,
-            "hash": "bcrypt",
-            "hashCost": 10
+            "minLength": 8
       }
       },
       'role': {
@@ -102,9 +101,7 @@ class UsersModel extends BaseModel {
         constraints: {
             "required": true,
             "default": "CURRENT_TIMESTAMP",
-            "readonly": true,
-            "excludeFromCreate": true,
-            "excludeFromUpdate": true
+            "readonly": true
       }
       },
       'updated_at': {
@@ -113,9 +110,7 @@ class UsersModel extends BaseModel {
             "required": true,
             "default": "CURRENT_TIMESTAMP",
             "readonly": true,
-            "autoUpdate": true,
-            "excludeFromCreate": true,
-            "excludeFromUpdate": true
+            "autoUpdate": true
       }
       }
     };
@@ -126,9 +121,9 @@ class UsersModel extends BaseModel {
       moduleName: 'guestbook',
       tableName: 'users',
       viewName: 'users',
-      fieldCount: 5,
+      fieldCount: 7,
       databaseType: 'postgres',
-      generated: '2026-05-09 10:46:21',
+      generated: '2026-05-09 15:37:22',
       features: ["custom_where"]
     };
   }
@@ -561,7 +556,7 @@ class UsersModel extends BaseModel {
 
       // Add extra filters
       for (const [key, value] of Object.entries(extraFilters)) {
-        if (value && ["id","name","email","password","role"].includes(key)) {
+        if (value && ["id","name","email","password","role","created_at","updated_at"].includes(key)) {
           whereConditions.push(`a.${key} = $${paramIndex++}`);
           params.push(value);
         }
@@ -781,7 +776,7 @@ class UsersModel extends BaseModel {
     return {
       allFields: this.validFields,
       textFields: ["name"],
-      dateFields: [],
+      dateFields: ["created_at","updated_at"],
       requiredFields: ["id","name","email"],
       primaryTextField: 'name',
       searchableFields: this.getSearchableColumns ? this.getSearchableColumns().map(col => col.name) : []

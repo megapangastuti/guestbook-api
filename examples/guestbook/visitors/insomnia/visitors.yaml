@@ -1,0 +1,277 @@
+type: collection.insomnia.rest/5.0
+name: Guestbook
+meta:
+  id: wrk_3ttyv4nz8p7irqh7twudv
+  created: 1778341425337
+  modified: 1778341425337
+collection:
+  - name: visitors
+    meta:
+      id: fld_dva91iri8n6cxoaukadta
+      created: 1778341425337
+      modified: 1778341425337
+      sortKey: -1778341425337
+    children:
+      - url: http://localhost:3000/api/guestbook/visitors/datatables
+        name: visitors/datatables
+        meta:
+          id: req_x4wpo8igywlq7t41oxjo8
+          created: 1778341425337
+          modified: 1778341425337
+          isPrivate: false
+          sortKey: -1778341425337
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "draw": 1,
+              "start": 0,
+              "length": 10,
+              "search": {
+                "value": ""
+              }
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/guestbook/visitors/lookup
+        name: visitors/lookup
+        meta:
+          id: req_zd2olbhy0e029scsxaym5e
+          created: 1778341425337
+          modified: 1778341425337
+          isPrivate: false
+          sortKey: -1778341424337
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "select": [
+                "id",
+                "visitor_code"
+              ]
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: x-request-mode
+            value: static
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/guestbook/visitors/create
+        name: visitors/create
+        meta:
+          id: req_id6ytuepowc6831gdg44v
+          created: 1778341425337
+          modified: 1778341425337
+          isPrivate: false
+          sortKey: -1778341423337
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "visitor_code": "DMO001",
+              "name": "Demo Name",
+              "phone": "+62812345678",
+              "email": "demo@example.com",
+              "company": "Demo Company",
+              "identity_number": "Demo identity_number",
+              "created_at": "CURRENT_TIMESTAMP",
+              "updated_at": "CURRENT_TIMESTAMP"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/guestbook/visitors/update
+        name: visitors/update
+        meta:
+          id: req_hff30zw1p3s0zyycwrx2r
+          created: 1778341425337
+          modified: 1778341425337
+          isPrivate: false
+          sortKey: -1778341422337
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "visitor_code": "DMO001",
+              "name": "Updated Demo Name",
+              "phone": "+62812345678",
+              "email": "updated@example.com",
+              "company": "Demo Company",
+              "identity_number": "Demo identity_number",
+              "created_at": "CURRENT_TIMESTAMP",
+              "updated_at": "CURRENT_TIMESTAMP"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/guestbook/visitors/first
+        name: visitors/first
+        meta:
+          id: req_vn8nqqx8dcphjr28usvbvj
+          created: 1778341425337
+          modified: 1778341425337
+          isPrivate: false
+          sortKey: -1778341421337
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "where": {
+                "key": "id",
+                "value": "sample-id-replace-with-real-id"
+              },
+              "select": [
+                "id",
+                "visitor_code",
+                "name",
+                "phone",
+                "email",
+                "company",
+                "identity_number",
+                "created_at",
+                "updated_at"
+              ]
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/guestbook/visitors/delete
+        name: visitors/delete
+        meta:
+          id: req_1ab099qg6o3kdbz04k0bt
+          created: 1778341425337
+          modified: 1778341425337
+          isPrivate: false
+          sortKey: -1778341420337
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "where": [
+                {
+                  "key": "id",
+                  "value": "sample-id-replace-with-real-id"
+                }
+              ]
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/guestbook/visitors/read
+        name: visitors/read
+        meta:
+          id: req_f4o3z150qcogkd6jaenz9u
+          created: 1778341425337
+          modified: 1778341425337
+          isPrivate: false
+          sortKey: -1778341419337
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "page": 1,
+              "per_page": 10,
+              "search_value": "",
+              "search_by": "visitor_code"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/guestbook/health
+        name: health
+        meta:
+          id: req_wls7tvhsn9i7042o8uwks
+          created: 1778341425337
+          modified: 1778341425337
+          isPrivate: false
+          sortKey: -1778341418337
+        method: GET
+        body:
+          mimeType: application/json
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_7hf8lpzlievnezqo2gjgq
+    created: 1778341425337
+    modified: 1778341425337
+environments:
+  name: Base Environment
+  meta:
+    id: env_by487rwqw2nw0wj5kcrdvj
+    created: 1778341425337
+    modified: 1778341425337
+    isPrivate: false

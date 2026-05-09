@@ -9,4 +9,3 @@ SELECT
     v.created_at,
     v.updated_at
 FROM visitors v
-ORDER BY v.created_at DESC;
