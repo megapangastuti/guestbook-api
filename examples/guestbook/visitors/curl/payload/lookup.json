@@ -1,0 +1,6 @@
+{
+  "select": [
+    "id",
+    "visitor_code"
+  ]
+}

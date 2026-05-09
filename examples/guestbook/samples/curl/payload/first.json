@@ -1,0 +1,17 @@
+{
+  "where": {
+    "key": "contact_id",
+    "value": "Demo contact_id"
+  },
+  "select": [
+    "contact_id",
+    "contact_name",
+    "email",
+    "address",
+    "is_active",
+    "created_at",
+    "created_by",
+    "updated_at",
+    "updated_by"
+  ]
+}

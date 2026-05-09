@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "guestbook": {
+      "database": "postgres",
+      "createdAt": "2026-05-09T08:20:15.924Z",
+      "endpoints": [
+        "users",
+        "visitors",
+        "visits",
+        "samples"
+      ]
+    }
+  }
+}

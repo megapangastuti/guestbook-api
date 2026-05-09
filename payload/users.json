@@ -1,0 +1,127 @@
+{
+  "tableName": "users",
+  "primaryKey": "id",
+
+  "fieldName": ["id", "name", "email", "password", "role", "created_at", "updated_at"],
+
+  "fieldValidation": [
+    {
+      "name": "id",
+      "type": "uuid",
+      "constraints": {
+        "primaryKey": true,
+        "required": true,
+        "autoGenerate": true
+      }
+    },
+
+    {
+      "name": "name",
+      "type": "string",
+      "constraints": {
+        "required": true,
+        "maxLength": 100,
+        "trim": true
+      }
+    },
+
+    {
+      "name": "email",
+      "type": "string",
+      "constraints": {
+        "required": true,
+        "format": "email",
+        "maxLength": 150,
+        "unique": true,
+        "trim": true,
+        "lowercase": true
+      }
+    },
+
+    {
+      "name": "password",
+      "type": "string",
+      "constraints": {
+        "required": true,
+        "minLength": 8
+      }
+    },
+
+    {
+      "name": "role",
+      "type": "enum",
+      "constraints": {
+        "required": true,
+        "enum": ["ADMIN", "RECEPTIONIST"],
+        "default": "RECEPTIONIST"
+      }
+    },
+
+    {
+      "name": "created_at",
+      "type": "timestamp",
+      "constraints": {
+        "required": true,
+        "default": "CURRENT_TIMESTAMP",
+        "readonly": true
+      }
+    },
+
+    {
+      "name": "updated_at",
+      "type": "timestamp",
+      "constraints": {
+        "required": true,
+        "default": "CURRENT_TIMESTAMP",
+        "readonly": true,
+        "autoUpdate": true
+      }
+    }
+  ],
+
+  "fieldNameLookup": {
+    "id": "id",
+    "text": "name || ' - ' || email AS display_text"
+  },
+
+  "datatables": {
+    "query": "file:query/users-datatables.sql",
+
+    "searchable": ["name", "email", "role"],
+
+    "sortable": ["name", "email", "role", "created_at"],
+
+    "defaultSort": {
+      "field": "created_at",
+      "direction": "DESC"
+    }
+  },
+
+  "action": {
+    "datatables": true,
+
+    "create": true,
+    "update": true,
+    "delete": true,
+
+    "read": true,
+    "first": true,
+    "lookup": true,
+
+    "export": false,
+    "import": false,
+
+    "aggregate": false,
+    "adjust": false,
+
+    "createComposite": false,
+    "updateComposite": false,
+    "readComposite": false
+  },
+
+  "metadata": {
+    "module": "users",
+    "description": "System users for guestbook application",
+    "roles": ["ADMIN", "RECEPTIONIST"]
+  }
+}

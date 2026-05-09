@@ -1,0 +1,11 @@
+{
+  "contact_id": "Demo contact_id",
+  "contact_name": "Updated Demo Name",
+  "email": "updated@example.com",
+  "address": "Jl. Demo Street No. 123",
+  "is_active": true,
+  "created_at": "Demo created_at",
+  "created_by": "Demo created_by",
+  "updated_at": "2026-05-09",
+  "updated_by": "2026-05-09"
+}

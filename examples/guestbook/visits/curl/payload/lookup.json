@@ -1,0 +1,6 @@
+{
+  "select": [
+    "id",
+    "visit_number"
+  ]
+}

@@ -1,0 +1,149 @@
+{
+  "tableName": "visitors",
+  "primaryKey": "id",
+
+  "fieldName": ["id", "visitor_code", "name", "phone", "email", "company", "identity_number", "created_at", "updated_at"],
+
+  "fieldValidation": [
+    {
+      "name": "id",
+      "type": "uuid",
+      "constraints": {
+        "primaryKey": true,
+        "required": true,
+        "autoGenerate": true
+      }
+    },
+
+    {
+      "name": "visitor_code",
+      "type": "string",
+      "constraints": {
+        "required": true,
+        "maxLength": 30,
+        "unique": true,
+        "trim": true,
+        "uppercase": true
+      }
+    },
+
+    {
+      "name": "name",
+      "type": "string",
+      "constraints": {
+        "required": true,
+        "maxLength": 100,
+        "trim": true
+      }
+    },
+
+    {
+      "name": "phone",
+      "type": "string",
+      "constraints": {
+        "required": false,
+        "maxLength": 20,
+        "trim": true
+      }
+    },
+
+    {
+      "name": "email",
+      "type": "string",
+      "constraints": {
+        "required": false,
+        "format": "email",
+        "maxLength": 150,
+        "trim": true,
+        "lowercase": true
+      }
+    },
+
+    {
+      "name": "company",
+      "type": "string",
+      "constraints": {
+        "required": false,
+        "maxLength": 150,
+        "trim": true
+      }
+    },
+
+    {
+      "name": "identity_number",
+      "type": "string",
+      "constraints": {
+        "required": false,
+        "maxLength": 100,
+        "trim": true
+      }
+    },
+
+    {
+      "name": "created_at",
+      "type": "timestamp",
+      "constraints": {
+        "required": true,
+        "default": "CURRENT_TIMESTAMP",
+        "readonly": true
+      }
+    },
+
+    {
+      "name": "updated_at",
+      "type": "timestamp",
+      "constraints": {
+        "required": true,
+        "default": "CURRENT_TIMESTAMP",
+        "readonly": true,
+        "autoUpdate": true
+      }
+    }
+  ],
+
+  "fieldNameLookup": {
+    "id": "id",
+    "text": "visitor_code || ' - ' || name AS display_text"
+  },
+
+  "datatables": {
+    "query": "file:query/visitors-datatables.sql",
+
+    "searchable": ["visitor_code", "name", "phone", "email", "company", "identity_number"],
+
+    "sortable": ["visitor_code", "name", "company", "created_at"],
+
+    "defaultSort": {
+      "field": "created_at",
+      "direction": "DESC"
+    }
+  },
+
+  "action": {
+    "datatables": true,
+
+    "create": true,
+    "update": true,
+    "delete": true,
+
+    "read": true,
+    "first": true,
+    "lookup": true,
+
+    "export": false,
+    "import": false,
+
+    "aggregate": false,
+    "adjust": false,
+
+    "createComposite": false,
+    "updateComposite": false,
+    "readComposite": false
+  },
+
+  "metadata": {
+    "module": "visitors",
+    "description": "Guest / visitor master data",
+    "businessKey": "visitor_code"
+  }
+}

@@ -1,0 +1,301 @@
+{
+  "info": {
+    "_postman_id": "ipqojssqqy48ohtv2wk6f",
+    "name": "Guestbook - Visitors",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "restforge-generator"
+  },
+  "item": [
+    {
+      "name": "visitors/datatables",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"draw\": 1,\n  \"start\": 0,\n  \"length\": 10,\n  \"search\": {\n    \"value\": \"\"\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/guestbook/visitors/datatables",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "guestbook",
+            "visitors",
+            "datatables"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "visitors/lookup",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "x-request-mode",
+            "value": "static",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"select\": [\n    \"id\",\n    \"visitor_code\"\n  ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/guestbook/visitors/lookup",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "guestbook",
+            "visitors",
+            "lookup"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "visitors/create",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"visitor_code\": \"DMO001\",\n  \"name\": \"Demo Name\",\n  \"phone\": \"+62812345678\",\n  \"email\": \"demo@example.com\",\n  \"company\": \"Demo Company\",\n  \"identity_number\": \"Demo identity_number\",\n  \"created_at\": \"Demo created_at\",\n  \"updated_at\": \"2026-05-09\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/guestbook/visitors/create",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "guestbook",
+            "visitors",
+            "create"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "visitors/update",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"visitor_code\": \"DMO001\",\n  \"name\": \"Updated Demo Name\",\n  \"phone\": \"+62812345678\",\n  \"email\": \"updated@example.com\",\n  \"company\": \"Demo Company\",\n  \"identity_number\": \"Demo identity_number\",\n  \"created_at\": \"Demo created_at\",\n  \"updated_at\": \"2026-05-09\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/guestbook/visitors/update",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "guestbook",
+            "visitors",
+            "update"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "visitors/first",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"where\": {\n    \"key\": \"id\",\n    \"value\": \"sample-id-replace-with-real-id\"\n  },\n  \"select\": [\n    \"id\",\n    \"visitor_code\",\n    \"name\",\n    \"phone\",\n    \"email\",\n    \"company\",\n    \"identity_number\",\n    \"created_at\",\n    \"updated_at\"\n  ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/guestbook/visitors/first",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "guestbook",
+            "visitors",
+            "first"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "visitors/delete",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"where\": [\n    {\n      \"key\": \"id\",\n      \"value\": \"sample-id-replace-with-real-id\"\n    }\n  ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/guestbook/visitors/delete",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "guestbook",
+            "visitors",
+            "delete"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "visitors/read",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"page\": 1,\n  \"per_page\": 10,\n  \"search_value\": \"\",\n  \"search_by\": \"visitor_code\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/guestbook/visitors/read",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "guestbook",
+            "visitors",
+            "read"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "health",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/api/guestbook/health",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "guestbook",
+            "health"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

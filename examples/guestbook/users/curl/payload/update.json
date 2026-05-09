@@ -1,0 +1,8 @@
+{
+  "name": "Updated Demo Name",
+  "email": "updated@example.com",
+  "password": "Demo password",
+  "role": "ADMIN",
+  "created_at": "Demo created_at",
+  "updated_at": "2026-05-09"
+}

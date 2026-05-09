@@ -1,0 +1,220 @@
+{
+  "tableName": "visits",
+
+  "primaryKey": "id",
+
+  "viewQuery": "file:query/visits-viewquery.sql",
+
+  "fieldNameLookup": {
+    "id": "id",
+    "text": "visit_number AS display_text"
+  },
+
+  "fieldName": [
+    "id",
+
+    "visit_number",
+
+    "visitor_id",
+    "visitor_master_id",
+    "visitor_code",
+    "visitor_name",
+    "company",
+
+    "host_name",
+    "purpose",
+
+    "check_in_time",
+    "check_out_time",
+
+    "status",
+
+    "created_by",
+    "receptionist_id",
+    "receptionist_name",
+
+    "notes",
+
+    "created_at",
+    "updated_at"
+  ],
+
+  "fieldValidation": [
+    {
+      "name": "id",
+      "type": "uuid",
+      "constraints": {
+        "primaryKey": true,
+        "required": true,
+        "autoGenerate": true
+      }
+    },
+
+    {
+      "name": "visit_number",
+      "type": "string",
+      "constraints": {
+        "required": true,
+        "maxLength": 50,
+        "unique": true,
+        "trim": true,
+        "uppercase": true
+      }
+    },
+
+    {
+      "name": "visitor_id",
+      "type": "uuid",
+      "constraints": {
+        "required": true,
+        "foreignKey": {
+          "table": "visitors",
+          "field": "id"
+        }
+      }
+    },
+
+    {
+      "name": "host_name",
+      "type": "string",
+      "constraints": {
+        "required": true,
+        "maxLength": 100,
+        "trim": true
+      }
+    },
+
+    {
+      "name": "purpose",
+      "type": "string",
+      "constraints": {
+        "required": false,
+        "maxLength": 500,
+        "trim": true
+      }
+    },
+
+    {
+      "name": "check_in_time",
+      "type": "timestamp",
+      "constraints": {
+        "required": true,
+        "default": "CURRENT_TIMESTAMP"
+      }
+    },
+
+    {
+      "name": "check_out_time",
+      "type": "timestamp",
+      "constraints": {
+        "required": false
+      }
+    },
+
+    {
+      "name": "status",
+      "type": "enum",
+      "constraints": {
+        "required": true,
+        "enum": ["CHECKED_IN", "CHECKED_OUT"],
+        "default": "CHECKED_IN"
+      }
+    },
+
+    {
+      "name": "created_by",
+      "type": "uuid",
+      "constraints": {
+        "required": false,
+        "foreignKey": {
+          "table": "users",
+          "field": "id"
+        }
+      }
+    },
+
+    {
+      "name": "notes",
+      "type": "string",
+      "constraints": {
+        "required": false,
+        "maxLength": 1000,
+        "trim": true
+      }
+    },
+
+    {
+      "name": "created_at",
+      "type": "timestamp",
+      "constraints": {
+        "required": true,
+        "default": "CURRENT_TIMESTAMP",
+        "readonly": true
+      }
+    },
+
+    {
+      "name": "updated_at",
+      "type": "timestamp",
+      "constraints": {
+        "required": true,
+        "default": "CURRENT_TIMESTAMP",
+        "readonly": true,
+        "autoUpdate": true
+      }
+    }
+  ],
+
+  "datatables": {
+    "query": "file:query/visits-datatables.sql",
+
+    "searchable": ["visit_number", "visitor_code", "visitor_name", "company", "host_name", "purpose", "status", "receptionist_name"],
+
+    "sortable": ["visit_number", "visitor_name", "company", "host_name", "status", "check_in_time", "created_at"],
+
+    "defaultSort": {
+      "field": "check_in_time",
+      "direction": "DESC"
+    }
+  },
+
+  "action": {
+    "datatables": true,
+
+    "create": true,
+    "update": true,
+    "delete": true,
+
+    "read": true,
+    "first": true,
+    "lookup": true,
+
+    "export": false,
+    "import": false,
+
+    "aggregate": false,
+    "adjust": false,
+
+    "createComposite": false,
+    "updateComposite": false,
+    "readComposite": false,
+
+    "workflow": true
+  },
+
+  "workflow": {
+    "statusField": "status",
+
+    "transitions": {
+      "CHECKED_IN": ["CHECKED_OUT"],
+
+      "CHECKED_OUT": []
+    }
+  },
+
+  "metadata": {
+    "module": "visits",
+    "description": "Visitor check-in and check-out transactions",
+    "businessKey": "visit_number"
+  }
+}

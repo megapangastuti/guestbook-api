@@ -1,0 +1,168 @@
+{
+  "version": "2.0.0",
+  "moduleName": "guestbook",
+  "createdAt": "2026-05-09T08:20:15.870Z",
+  "updatedAt": "2026-05-09T08:22:12.046Z",
+  "databaseType": "postgres",
+  "endpoints": {
+    "users": {
+      "version": "2.0.0",
+      "type": "module",
+      "createdAt": "2026-05-09T08:20:15.892Z",
+      "updatedAt": "2026-05-09T08:20:15.892Z",
+      "path": "src/modules/guestbook/users.js",
+      "modelPath": "src/models/guestbook/users.js",
+      "tableName": "users",
+      "databaseType": "postgres",
+      "actions": {
+        "datatables": true,
+        "create": true,
+        "update": true,
+        "delete": true,
+        "first": true,
+        "lookup": true,
+        "read": true,
+        "export": false,
+        "import": false,
+        "adjust": false,
+        "aggregate": false,
+        "createComposite": false,
+        "updateComposite": false,
+        "readComposite": false,
+        "workflow": false
+      },
+      "fieldCount": 7,
+      "hasAdvancedQueries": false,
+      "hasNestedQueries": false,
+      "hasFilters": false,
+      "hasSearchColumns": false,
+      "statistics": {
+        "timesGenerated": 1,
+        "lastGenerated": "2026-05-09T08:20:15.892Z",
+        "lastModified": "2026-05-09T08:20:15.892Z"
+      }
+    },
+    "visitors": {
+      "version": "2.0.0",
+      "type": "module",
+      "createdAt": "2026-05-09T08:20:52.674Z",
+      "updatedAt": "2026-05-09T08:20:52.674Z",
+      "path": "src/modules/guestbook/visitors.js",
+      "modelPath": "src/models/guestbook/visitors.js",
+      "tableName": "visitors",
+      "databaseType": "postgres",
+      "actions": {
+        "datatables": true,
+        "create": true,
+        "update": true,
+        "delete": true,
+        "first": true,
+        "lookup": true,
+        "read": true,
+        "export": false,
+        "import": false,
+        "adjust": false,
+        "aggregate": false,
+        "createComposite": false,
+        "updateComposite": false,
+        "readComposite": false,
+        "workflow": false
+      },
+      "fieldCount": 9,
+      "hasAdvancedQueries": false,
+      "hasNestedQueries": false,
+      "hasFilters": false,
+      "hasSearchColumns": false,
+      "statistics": {
+        "timesGenerated": 1,
+        "lastGenerated": "2026-05-09T08:20:52.674Z",
+        "lastModified": "2026-05-09T08:20:52.674Z"
+      }
+    },
+    "visits": {
+      "version": "2.0.0",
+      "type": "module",
+      "createdAt": "2026-05-09T08:21:05.441Z",
+      "updatedAt": "2026-05-09T08:21:05.441Z",
+      "path": "src/modules/guestbook/visits.js",
+      "modelPath": "src/models/guestbook/visits.js",
+      "tableName": "visits",
+      "databaseType": "postgres",
+      "actions": {
+        "datatables": true,
+        "create": true,
+        "update": true,
+        "delete": true,
+        "first": true,
+        "lookup": true,
+        "read": true,
+        "export": false,
+        "import": false,
+        "adjust": false,
+        "aggregate": false,
+        "createComposite": false,
+        "updateComposite": false,
+        "readComposite": false,
+        "workflow": true
+      },
+      "fieldCount": 16,
+      "hasAdvancedQueries": false,
+      "hasNestedQueries": false,
+      "hasFilters": false,
+      "hasSearchColumns": false,
+      "statistics": {
+        "timesGenerated": 1,
+        "lastGenerated": "2026-05-09T08:21:05.441Z",
+        "lastModified": "2026-05-09T08:21:05.441Z"
+      }
+    },
+    "samples": {
+      "version": "2.0.0",
+      "type": "module",
+      "createdAt": "2026-05-09T08:22:12.046Z",
+      "updatedAt": "2026-05-09T08:22:12.046Z",
+      "path": "src/modules/guestbook/samples.js",
+      "modelPath": "src/models/guestbook/samples.js",
+      "tableName": "contact",
+      "databaseType": "postgres",
+      "actions": {
+        "datatables": true,
+        "create": true,
+        "update": true,
+        "delete": true,
+        "first": true,
+        "lookup": true,
+        "read": true,
+        "export": true,
+        "import": true,
+        "adjust": false,
+        "aggregate": false,
+        "createComposite": false,
+        "updateComposite": false,
+        "readComposite": false,
+        "workflow": false
+      },
+      "fieldCount": 9,
+      "hasAdvancedQueries": false,
+      "hasNestedQueries": false,
+      "hasFilters": false,
+      "hasSearchColumns": false,
+      "statistics": {
+        "timesGenerated": 1,
+        "lastGenerated": "2026-05-09T08:22:12.046Z",
+        "lastModified": "2026-05-09T08:22:12.046Z"
+      }
+    }
+  },
+  "statistics": {
+    "totalEndpoints": 4,
+    "endpointsByType": {
+      "module": 4
+    },
+    "lastGenerated": "2026-05-09T08:22:12.046Z"
+  },
+  "config": {
+    "autoBackup": false,
+    "maxBackups": 5
+  }
+}

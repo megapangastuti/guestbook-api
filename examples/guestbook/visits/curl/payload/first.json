@@ -1,0 +1,24 @@
+{
+  "where": {
+    "key": "id",
+    "value": "sample-id-replace-with-real-id"
+  },
+  "select": [
+    "id",
+    "visit_number",
+    "visitor_id",
+    "visitor_code",
+    "visitor_name",
+    "company",
+    "host_name",
+    "purpose",
+    "check_in_time",
+    "check_out_time",
+    "status",
+    "created_by",
+    "receptionist_name",
+    "notes",
+    "created_at",
+    "updated_at"
+  ]
+}

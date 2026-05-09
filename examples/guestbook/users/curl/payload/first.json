@@ -1,0 +1,15 @@
+{
+  "where": {
+    "key": "id",
+    "value": "sample-id-replace-with-real-id"
+  },
+  "select": [
+    "id",
+    "name",
+    "email",
+    "password",
+    "role",
+    "created_at",
+    "updated_at"
+  ]
+}

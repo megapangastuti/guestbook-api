@@ -1,0 +1,6 @@
+{
+  "select": [
+    "contact_id",
+    "contact_name"
+  ]
+}

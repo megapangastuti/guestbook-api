@@ -1,0 +1,39 @@
+{
+  "version": "2.0.0",
+  "lastUpdated": "2026-05-09T08:22:12.048Z",
+  "totalModules": 2,
+  "totalEndpoints": 7,
+  "modules": {
+    "guestbook-workbench": {
+      "endpointCount": 3,
+      "databaseType": "postgres"
+    },
+    "guestbook": {
+      "endpointCount": 4,
+      "databaseType": "postgres",
+      "lastUpdated": "2026-05-09T08:22:12.046Z",
+      "createdAt": "2026-05-09T08:20:15.870Z"
+    }
+  },
+  "databaseTypes": {
+    "postgres": 2
+  },
+  "summary": {
+    "endpointsByAction": {
+      "datatables": 4,
+      "create": 4,
+      "update": 4,
+      "delete": 4,
+      "first": 4,
+      "lookup": 4,
+      "read": 4,
+      "workflow": 1,
+      "export": 1,
+      "import": 1
+    },
+    "endpointsByDatabase": {
+      "postgres": 4
+    },
+    "recentActivity": []
+  }
+}
