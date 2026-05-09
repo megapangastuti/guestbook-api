@@ -83,7 +83,7 @@
       "name": "created_at",
       "type": "timestamp",
       "constraints": {
-        "required": true,
+        "required": false,
         "default": "CURRENT_TIMESTAMP",
         "readonly": true
       }
@@ -93,7 +93,7 @@
       "name": "updated_at",
       "type": "timestamp",
       "constraints": {
-        "required": true,
+        "required": false,
         "default": "CURRENT_TIMESTAMP",
         "readonly": true,
         "autoUpdate": true

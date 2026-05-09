@@ -2,7 +2,7 @@
   "version": "2.0.0",
   "moduleName": "guestbook",
   "createdAt": "2026-05-09T15:17:08.090Z",
-  "updatedAt": "2026-05-09T15:59:30.236Z",
+  "updatedAt": "2026-05-09T16:23:28.659Z",
   "databaseType": "postgres",
   "endpoints": {
     "users": {
@@ -46,7 +46,7 @@
       "version": "2.0.0",
       "type": "module",
       "createdAt": "2026-05-09T15:43:45.309Z",
-      "updatedAt": "2026-05-09T15:43:45.309Z",
+      "updatedAt": "2026-05-09T16:23:28.658Z",
       "path": "src/modules/guestbook/visitors.js",
       "modelPath": "src/models/guestbook/visitors.js",
       "tableName": "visitors",
@@ -74,16 +74,16 @@
       "hasFilters": false,
       "hasSearchColumns": false,
       "statistics": {
-        "timesGenerated": 1,
-        "lastGenerated": "2026-05-09T15:43:45.309Z",
-        "lastModified": "2026-05-09T15:43:45.309Z"
+        "timesGenerated": 3,
+        "lastGenerated": "2026-05-09T16:23:28.658Z",
+        "lastModified": "2026-05-09T16:23:28.658Z"
       }
     },
     "visits": {
       "version": "2.0.0",
       "type": "module",
       "createdAt": "2026-05-09T15:43:49.907Z",
-      "updatedAt": "2026-05-09T15:43:49.907Z",
+      "updatedAt": "2026-05-09T16:16:55.042Z",
       "path": "src/modules/guestbook/visits.js",
       "modelPath": "src/models/guestbook/visits.js",
       "tableName": "visits",
@@ -111,9 +111,9 @@
       "hasFilters": false,
       "hasSearchColumns": false,
       "statistics": {
-        "timesGenerated": 1,
-        "lastGenerated": "2026-05-09T15:43:49.907Z",
-        "lastModified": "2026-05-09T15:43:49.907Z"
+        "timesGenerated": 2,
+        "lastGenerated": "2026-05-09T16:16:55.042Z",
+        "lastModified": "2026-05-09T16:16:55.042Z"
       }
     }
   },
@@ -122,7 +122,7 @@
     "endpointsByType": {
       "module": 3
     },
-    "lastGenerated": "2026-05-09T15:59:30.236Z"
+    "lastGenerated": "2026-05-09T16:23:28.658Z"
   },
   "config": {
     "autoBackup": false,

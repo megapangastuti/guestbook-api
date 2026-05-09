@@ -8,7 +8,7 @@
   "host_name": "Updated Demo Name",
   "purpose": "Demo purpose",
   "check_in_time": "CURRENT_TIMESTAMP",
-  "check_out_time": "2026-05-09T15:43:49.955Z",
+  "check_out_time": "2026-05-09T16:16:55.074Z",
   "status": "CHECKED_IN",
   "created_by": "sample-uuid-replace-with-real-id",
   "receptionist_id": "Demo receptionist_id",

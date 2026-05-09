@@ -5,11 +5,11 @@ const path = require('path');
 // AdvancedFilterHelper dihapus — semua filtering ditangani oleh buildObjectFilterClause dan buildComplexWhereClause
 
 /**
- * Visits Model - Auto-generated on 2026-05-09 10:47:41
+ * Visits Model - Auto-generated on 2026-05-09 15:43:49
  *
  * Model untuk visits yang mewarisi fungsi-fungsi dari BaseModel
  * Table: visits
- * Fields: 10 fields
+ * Fields: 18 fields
  * Database: PostgreSQL
  */
 class VisitsModel extends BaseModel {
@@ -22,13 +22,21 @@ class VisitsModel extends BaseModel {
       'id',
       'visit_number',
       'visitor_id',
+      'visitor_master_id',
+      'visitor_code',
+      'visitor_name',
+      'company',
       'host_name',
       'purpose',
       'check_in_time',
       'check_out_time',
       'status',
       'created_by',
-      'notes'
+      'receptionist_id',
+      'receptionist_name',
+      'notes',
+      'created_at',
+      'updated_at'
     ];
 
     // Definisikan datatablesWhere sesuai payload
@@ -59,8 +67,7 @@ class VisitsModel extends BaseModel {
         constraints: {
             "primaryKey": true,
             "required": true,
-            "autoGenerate": true,
-            "readonly": true
+            "autoGenerate": true
       }
       },
       'visit_number': {
@@ -141,62 +148,12 @@ class VisitsModel extends BaseModel {
             "trim": true
       }
       },
-      'visitor_master_id': {
-        type: 'uuid',
-        constraints: {
-            "readonly": true,
-            "excludeFromCreate": true,
-            "excludeFromUpdate": true
-      }
-      },
-      'visitor_code': {
-        type: 'string',
-        constraints: {
-            "readonly": true,
-            "excludeFromCreate": true,
-            "excludeFromUpdate": true
-      }
-      },
-      'visitor_name': {
-        type: 'string',
-        constraints: {
-            "readonly": true,
-            "excludeFromCreate": true,
-            "excludeFromUpdate": true
-      }
-      },
-      'company': {
-        type: 'string',
-        constraints: {
-            "readonly": true,
-            "excludeFromCreate": true,
-            "excludeFromUpdate": true
-      }
-      },
-      'receptionist_id': {
-        type: 'uuid',
-        constraints: {
-            "readonly": true,
-            "excludeFromCreate": true,
-            "excludeFromUpdate": true
-      }
-      },
-      'receptionist_name': {
-        type: 'string',
-        constraints: {
-            "readonly": true,
-            "excludeFromCreate": true,
-            "excludeFromUpdate": true
-      }
-      },
       'created_at': {
         type: 'timestamp',
         constraints: {
             "required": true,
             "default": "CURRENT_TIMESTAMP",
-            "readonly": true,
-            "excludeFromCreate": true,
-            "excludeFromUpdate": true
+            "readonly": true
       }
       },
       'updated_at': {
@@ -205,9 +162,7 @@ class VisitsModel extends BaseModel {
             "required": true,
             "default": "CURRENT_TIMESTAMP",
             "readonly": true,
-            "autoUpdate": true,
-            "excludeFromCreate": true,
-            "excludeFromUpdate": true
+            "autoUpdate": true
       }
       }
     };
@@ -218,9 +173,9 @@ class VisitsModel extends BaseModel {
       moduleName: 'guestbook',
       tableName: 'visits',
       viewName: 'visits',
-      fieldCount: 10,
+      fieldCount: 18,
       databaseType: 'postgres',
-      generated: '2026-05-09 10:47:41',
+      generated: '2026-05-09 15:43:49',
       features: ["custom_where"]
     };
   }
@@ -650,7 +605,7 @@ class VisitsModel extends BaseModel {
       const lookupConfig = {"idField":"id","textField":"visit_number AS display_text","hasCustomText":true,"searchFields":["visit_number"]};
       const textFields = lookupConfig && lookupConfig.searchFields.length > 0
         ? lookupConfig.searchFields
-        : ["host_name"];
+        : ["visitor_code","visitor_name","host_name","receptionist_name"];
 
       let whereConditions = [];
       let params = [];
@@ -671,7 +626,7 @@ class VisitsModel extends BaseModel {
 
       // Add extra filters
       for (const [key, value] of Object.entries(extraFilters)) {
-        if (value && ["id","visit_number","visitor_id","host_name","purpose","check_in_time","check_out_time","status","created_by","notes"].includes(key)) {
+        if (value && ["id","visit_number","visitor_id","visitor_master_id","visitor_code","visitor_name","company","host_name","purpose","check_in_time","check_out_time","status","created_by","receptionist_id","receptionist_name","notes","created_at","updated_at"].includes(key)) {
           whereConditions.push(`a.${key} = $${paramIndex++}`);
           params.push(value);
         }
@@ -777,7 +732,7 @@ class VisitsModel extends BaseModel {
       let paramIndex = 1;
 
       // Parse dan validasi select columns untuk support SQL expressions
-      const validTextFields = ["host_name"];
+      const validTextFields = ["visitor_code","visitor_name","host_name","receptionist_name"];
       let selectClause = 'id';
       let textField = 'visit_number';
       let aliasField = null;
@@ -890,9 +845,9 @@ class VisitsModel extends BaseModel {
   getFieldMapping() {
     return {
       allFields: this.validFields,
-      textFields: ["host_name"],
-      dateFields: ["check_in_time","check_out_time","created_by"],
-      requiredFields: ["id","host_name"],
+      textFields: ["visitor_code","visitor_name","host_name","receptionist_name"],
+      dateFields: ["check_in_time","check_out_time","created_by","created_at","updated_at"],
+      requiredFields: ["id","visitor_code","visitor_name","host_name","receptionist_name"],
       primaryTextField: 'visit_number',
       searchableFields: this.getSearchableColumns ? this.getSearchableColumns().map(col => col.name) : []
     };

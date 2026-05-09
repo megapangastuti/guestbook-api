@@ -17,7 +17,7 @@ try {
     // Load component configuration dari payload yang sedang digunakan
     const componentConfig = {
       tableName: 'visits',
-      fieldName: ["id","visit_number","visitor_id","host_name","purpose","check_in_time","check_out_time","status","created_by","notes"],
+      fieldName: ["id","visit_number","visitor_id","visitor_master_id","visitor_code","visitor_name","company","host_name","purpose","check_in_time","check_out_time","status","created_by","receptionist_id","receptionist_name","notes","created_at","updated_at"],
       exportQuery: null,
       columnFormats: null,
       fieldLabels: null,
@@ -50,11 +50,11 @@ try {
 }
 
 /**
- * Visits Submodule - Auto-generated on 2026-05-09 10:47:41
+ * Visits Submodule - Auto-generated on 2026-05-09 15:43:49
  *
  * Endpoints untuk visits dengan actions: datatables, create, update, delete, first, lookup, read, workflow
  * Table: visits
- * Fields: 10 fields
+ * Fields: 18 fields
  * Database: PostgreSQL
  */
 
@@ -748,7 +748,7 @@ router.post('/first', async (req, res) => {
     }
 
     // Validasi where.key ada di validFields
-    const validFields = ["id","visit_number","visitor_id","host_name","purpose","check_in_time","check_out_time","status","created_by","notes"];
+    const validFields = ["id","visit_number","visitor_id","visitor_master_id","visitor_code","visitor_name","company","host_name","purpose","check_in_time","check_out_time","status","created_by","receptionist_id","receptionist_name","notes","created_at","updated_at"];
     if (!validFields.includes(req.body.where.key)) {
       return res.status(400).json({
         success: false,
@@ -926,7 +926,7 @@ router.post('/lookup', async (req, res) => {
               { "key": "visit_number", "operator": "like", "value": "%system%", "sensitive": false }
             ]
           },
-          "select": ["id", "host_name"]
+          "select": ["id", "visitor_code", "visitor_name", "host_name", "receptionist_name"]
         },
         example_with_ordering: {
           "select": ["id", "visit_number"],
@@ -972,7 +972,7 @@ router.post('/lookup', async (req, res) => {
                 { "key": "visit_number", "operator": "like", "value": "%system%", "sensitive": false }
               ]
             },
-            "select": ["id", "host_name"]
+            "select": ["id", "visitor_code", "visitor_name", "host_name", "receptionist_name"]
           },
           timestamp: new Date().toISOString()
         });
@@ -980,7 +980,7 @@ router.post('/lookup', async (req, res) => {
 
       // Validasi select fields jika ada (support SQL expressions)
       if (req.body.select && Array.isArray(req.body.select)) {
-        const validFields = ["id","visit_number","visitor_id","host_name","purpose","check_in_time","check_out_time","status","created_by","notes"];
+        const validFields = ["id","visit_number","visitor_id","visitor_master_id","visitor_code","visitor_name","company","host_name","purpose","check_in_time","check_out_time","status","created_by","receptionist_id","receptionist_name","notes","created_at","updated_at"];
         const invalidFields = [];
 
         // Check setiap field dalam select
@@ -1127,7 +1127,7 @@ router.post('/read', async (req, res) => {
     }
 
     // Proses parameter select untuk kolom selektif
-    const validFields = ["id","visit_number","visitor_id","host_name","purpose","check_in_time","check_out_time","status","created_by","notes"];
+    const validFields = ["id","visit_number","visitor_id","visitor_master_id","visitor_code","visitor_name","company","host_name","purpose","check_in_time","check_out_time","status","created_by","receptionist_id","receptionist_name","notes","created_at","updated_at"];
     let select = null;
     if (req.body.select && Array.isArray(req.body.select)) {
       const invalidFields = req.body.select.filter(field => !validFields.includes(field));
@@ -1433,7 +1433,7 @@ router.get('/info', async (req, res) => {
       querySources: modelInfo.querySources,
       actions: actions,
       databaseType: 'postgres',
-      generated: '2026-05-09 10:47:41',
+      generated: '2026-05-09 15:43:49',
       timestamp: new Date().toISOString()
     });
   } catch (error) {

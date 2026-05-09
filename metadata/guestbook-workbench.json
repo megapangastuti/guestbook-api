@@ -271,7 +271,7 @@
           "name": "created_at",
           "type": "timestamp",
           "constraints": {
-            "required": true,
+            "required": false,
             "default": "CURRENT_TIMESTAMP",
             "readonly": true
           }
@@ -280,7 +280,7 @@
           "name": "updated_at",
           "type": "timestamp",
           "constraints": {
-            "required": true,
+            "required": false,
             "default": "CURRENT_TIMESTAMP",
             "readonly": true,
             "autoUpdate": true
@@ -526,7 +526,7 @@
           "host_name": "Demo Name",
           "purpose": "Demo purpose",
           "check_in_time": "CURRENT_TIMESTAMP",
-          "check_out_time": "2026-05-09T15:43:49.933Z",
+          "check_out_time": "2026-05-09T16:16:55.067Z",
           "status": "CHECKED_IN",
           "created_by": "sample-uuid-replace-with-real-id",
           "receptionist_id": "Demo receptionist_id",
@@ -545,7 +545,7 @@
           "host_name": "Updated Demo Name",
           "purpose": "Demo purpose",
           "check_in_time": "CURRENT_TIMESTAMP",
-          "check_out_time": "2026-05-09T15:43:49.933Z",
+          "check_out_time": "2026-05-09T16:16:55.067Z",
           "status": "CHECKED_IN",
           "created_by": "sample-uuid-replace-with-real-id",
           "receptionist_id": "Demo receptionist_id",
