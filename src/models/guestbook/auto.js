@@ -5,31 +5,27 @@ const path = require('path');
 // AdvancedFilterHelper dihapus — semua filtering ditangani oleh buildObjectFilterClause dan buildComplexWhereClause
 
 /**
- * Users Model - Auto-generated on 2026-05-09 15:17:08
+ * Auto Model - Auto-generated on 2026-05-09 10:28:38
  *
- * Model untuk users yang mewarisi fungsi-fungsi dari BaseModel
+ * Model untuk auto yang mewarisi fungsi-fungsi dari BaseModel
  * Table: users
- * Fields: 7 fields
+ * Fields: 3 fields
  * Database: PostgreSQL
  */
-class UsersModel extends BaseModel {
+class AutoModel extends BaseModel {
   /**
    * Constructor
    */
   constructor() {
-    // Definisikan validFields - semua field yang valid untuk tabel users
+    // Definisikan validFields - semua field yang valid untuk tabel auto
     const validFields = [
       'id',
-      'name',
       'email',
-      'password',
-      'role',
-      'created_at',
-      'updated_at'
+      'password'
     ];
 
     // Definisikan datatablesWhere sesuai payload
-    const datatablesWhere = ["name","email","role","all"];
+    const datatablesWhere = ["email","all"];
 
     // Panggil constructor parent dengan nama tabel, validFields, dan datatablesWhere
     super('users', validFields, datatablesWhere);
@@ -59,23 +55,14 @@ class UsersModel extends BaseModel {
             "autoGenerate": true
       }
       },
-      'name': {
-        type: 'string',
-        constraints: {
-            "required": true,
-            "maxLength": 100,
-            "trim": true
-      }
-      },
       'email': {
         type: 'string',
         constraints: {
             "required": true,
             "format": "email",
-            "maxLength": 150,
-            "unique": true,
             "trim": true,
-            "lowercase": true
+            "lowercase": true,
+            "maxLength": 150
       }
       },
       'password': {
@@ -84,46 +71,18 @@ class UsersModel extends BaseModel {
             "required": true,
             "minLength": 8
       }
-      },
-      'role': {
-        type: 'enum',
-        constraints: {
-            "required": true,
-            "enum": [
-                  "ADMIN",
-                  "RECEPTIONIST"
-            ],
-            "default": "RECEPTIONIST"
-      }
-      },
-      'created_at': {
-        type: 'timestamp',
-        constraints: {
-            "required": true,
-            "default": "CURRENT_TIMESTAMP",
-            "readonly": true
-      }
-      },
-      'updated_at': {
-        type: 'timestamp',
-        constraints: {
-            "required": true,
-            "default": "CURRENT_TIMESTAMP",
-            "readonly": true,
-            "autoUpdate": true
-      }
       }
     };
 
     // Model metadata
     this.modelMetadata = {
-      endpointName: 'users',
+      endpointName: 'auto',
       moduleName: 'guestbook',
       tableName: 'users',
       viewName: 'users',
-      fieldCount: 7,
+      fieldCount: 3,
       databaseType: 'postgres',
-      generated: '2026-05-09 15:17:08',
+      generated: '2026-05-09 10:28:38',
       features: ["custom_where"]
     };
   }
@@ -140,9 +99,9 @@ class UsersModel extends BaseModel {
   }
 
   /**
-   * Override getListQuery untuk menyesuaikan dengan kebutuhan users
+   * Override getListQuery untuk menyesuaikan dengan kebutuhan auto
    * @param {Object} options - Query options
-   * @returns {string} SQL query dasar untuk users
+   * @returns {string} SQL query dasar untuk auto
    */
   getListQuery(options = {}) {
     // Load query dasar dengan placeholder replacement
@@ -150,7 +109,7 @@ class UsersModel extends BaseModel {
     // Load query dari file lokal
     let baseQuery;
     try {
-      const queryFilePath = path.join(__dirname, 'query', 'users-datatables.sql');
+      const queryFilePath = path.join(__dirname, 'query', 'auth-datatables.sql');
       if (fs.existsSync(queryFilePath)) {
         baseQuery = fs.readFileSync(queryFilePath, 'utf8').trim();
       } else {
@@ -499,13 +458,13 @@ class UsersModel extends BaseModel {
   }
 
   /**
-   * Override getLookupData untuk menggunakan kolom 'name' yang benar
+   * Override getLookupData untuk menggunakan kolom 'email' yang benar
    * @param {string} search - Kata kunci pencarian
    * @returns {Array} Array objek hasil lookup
    */
   async getLookupData(search) {
     try {
-      const query = 'SELECT id, name FROM ' + this.getLookupSource() + ' WHERE upper(a.name) LIKE upper($1) ORDER BY a.name';
+      const query = 'SELECT id, email FROM ' + this.getLookupSource() + ' WHERE upper(a.email) LIKE upper($1) ORDER BY a.email';
 
       const params = [`%${search || ''}%`];
 
@@ -513,12 +472,12 @@ class UsersModel extends BaseModel {
 
       const result = data.map(item => ({
         id: item.id,
-        text: item.name
+        text: item.email
       }));
 
       return result;
     } catch (error) {
-      console.error('Error in getLookupData (UsersModel):', error);
+      console.error('Error in getLookupData (AutoModel):', error);
       throw error;
     }
   }
@@ -532,10 +491,10 @@ class UsersModel extends BaseModel {
   async getLookupDataDynamic(search, extraFilters = {}) {
     try {
       // Gunakan custom lookup config jika ada, fallback ke textFields detection
-      const lookupConfig = {"idField":"id","textField":"name || ' - ' || email AS display_text","hasCustomText":true,"searchFields":["name","email"]};
+      const lookupConfig = {"idField":"id","textField":"email AS display_text","hasCustomText":true,"searchFields":["email"]};
       const textFields = lookupConfig && lookupConfig.searchFields.length > 0
         ? lookupConfig.searchFields
-        : ["name"];
+        : [];
 
       let whereConditions = [];
       let params = [];
@@ -556,7 +515,7 @@ class UsersModel extends BaseModel {
 
       // Add extra filters
       for (const [key, value] of Object.entries(extraFilters)) {
-        if (value && ["id","name","email","password","role","created_at","updated_at"].includes(key)) {
+        if (value && ["id","email","password"].includes(key)) {
           whereConditions.push(`a.${key} = $${paramIndex++}`);
           params.push(value);
         }
@@ -588,13 +547,13 @@ class UsersModel extends BaseModel {
         text: item[lookupConfig && lookupConfig.hasCustomText ? 'display_text' : textFields[0]] || ''
       }));
     } catch (error) {
-      console.error('Error in getLookupDataDynamic (UsersModel):', error);
+      console.error('Error in getLookupDataDynamic (AutoModel):', error);
       throw error;
     }
   }
 
   /**
-   * Override getStaticLookupData untuk menggunakan kolom 'name' yang benar
+   * Override getStaticLookupData untuk menggunakan kolom 'email' yang benar
    * @param {string} selectedTag - ID yang dipilih
    * @returns {Array} Array objek hasil lookup
    */
@@ -613,14 +572,14 @@ class UsersModel extends BaseModel {
         });
       }
 
-      const query = 'SELECT id, name FROM ' + this.getLookupSource() + ' ORDER BY a.name';
+      const query = 'SELECT id, email FROM ' + this.getLookupSource() + ' ORDER BY a.email';
 
       const data = await db.executeQuery(query);
 
       // Cache result tanpa selected flag
       const cacheData = data.map(item => ({
         id: item.id,
-        text: item.name
+        text: item.email
       }));
       await this.setCachedLookup(cacheOptions, cacheData, 'static');
 
@@ -628,7 +587,7 @@ class UsersModel extends BaseModel {
       return data.map(item => {
         const result = {
           id: item.id,
-          text: item.name
+          text: item.email
         };
 
         if (item.id === selectedTag) {
@@ -638,7 +597,7 @@ class UsersModel extends BaseModel {
         return result;
       });
     } catch (error) {
-      console.error('Error in getStaticLookupData (UsersModel):', error);
+      console.error('Error in getStaticLookupData (AutoModel):', error);
       throw error;
     }
   }
@@ -657,14 +616,14 @@ class UsersModel extends BaseModel {
         return cachedResult;
       }
 
-      const selectColumns = options.select || ['id', 'name'];
+      const selectColumns = options.select || ['id', 'email'];
       let params = [];
       let paramIndex = 1;
 
       // Parse dan validasi select columns untuk support SQL expressions
-      const validTextFields = ["name"];
+      const validTextFields = [];
       let selectClause = 'id';
-      let textField = 'name';
+      let textField = 'email';
       let aliasField = null;
 
       // Proses setiap column dalam select
@@ -686,7 +645,7 @@ class UsersModel extends BaseModel {
         }
 
         // Check jika simple field name
-        if (validTextFields.includes(column) || column === 'name') {
+        if (validTextFields.includes(column) || column === 'email') {
           selectClause += `, ${column}`;
           textField = column;
           break; // gunakan yang pertama sebagai text field
@@ -736,7 +695,7 @@ class UsersModel extends BaseModel {
         query += `ORDER BY ${aliasField || textField}`;
       }
 
-      console.log('=== DEBUG USERS LOOKUP WITH FILTER ===');
+      console.log('=== DEBUG AUTO LOOKUP WITH FILTER ===');
       console.log('Final SQL:', query);
       console.log('Parameters:', params);
       console.log('Selected columns:', selectColumns);
@@ -753,7 +712,7 @@ class UsersModel extends BaseModel {
       const textFieldName = aliasField || textField;
       const result = data.map(item => ({
         id: item.id,
-        text: item[textFieldName] || item.name || item.name || item.code || item.description || ''
+        text: item[textFieldName] || item.email || item.name || item.code || item.description || ''
       }));
 
       // Cache the result (if enabled)
@@ -762,7 +721,7 @@ class UsersModel extends BaseModel {
       return result;
 
     } catch (error) {
-      console.error('Error in getLookupDataWithFilter (UsersModel):', error);
+      console.error('Error in getLookupDataWithFilter (AutoModel):', error);
       throw error;
     }
   }
@@ -775,18 +734,18 @@ class UsersModel extends BaseModel {
   getFieldMapping() {
     return {
       allFields: this.validFields,
-      textFields: ["name"],
-      dateFields: ["created_at","updated_at"],
-      requiredFields: ["id","name","email"],
-      primaryTextField: 'name',
+      textFields: [],
+      dateFields: [],
+      requiredFields: ["id","email"],
+      primaryTextField: 'email',
       searchableFields: this.getSearchableColumns ? this.getSearchableColumns().map(col => col.name) : []
     };
   }
 
   /**
-   * Override formatResponseData untuk users
+   * Override formatResponseData untuk auto
    * @param {Object} data - Data dari database
-   * @returns {Object} Data yang sudah diformat untuk response users
+   * @returns {Object} Data yang sudah diformat untuk response auto
    */
   formatResponseData(data) {
     // Gunakan parent method yang sudah include datetime formatting
@@ -1401,4 +1360,4 @@ class UsersModel extends BaseModel {
 }
 
 // Export singleton instance
-module.exports = new UsersModel();
+module.exports = new AutoModel();

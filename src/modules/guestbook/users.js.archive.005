@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const visitorsModel = require('../../models/guestbook/visitors');
+const usersModel = require('../../models/guestbook/users');
 
 
 // Component Engine untuk event lifecycle (optional)
@@ -16,8 +16,8 @@ try {
 
     // Load component configuration dari payload yang sedang digunakan
     const componentConfig = {
-      tableName: 'visitors',
-      fieldName: ["id","visitor_code","name","phone","email","company","identity_number","created_at","updated_at"],
+      tableName: 'users',
+      fieldName: ["id","name","email","password","role","created_at","updated_at"],
       exportQuery: null,
       columnFormats: null,
       fieldLabels: null,
@@ -31,30 +31,30 @@ try {
 
     componentEngine.loadConfigurationFromObject(componentConfig).then(result => {
       if (result.success) {
-        console.log(`Component configuration loaded for guestbook/visitors: ${result.componentsLoaded} components`);
+        console.log(`Component configuration loaded for guestbook/users: ${result.componentsLoaded} components`);
       }
     }).catch(err => {
-      console.error(`Failed to load component configuration for guestbook/visitors:`, err.message);
+      console.error(`Failed to load component configuration for guestbook/users:`, err.message);
     });
   } else {
-    console.log(`No components defined in payload for guestbook/visitors, running without events`);
+    console.log(`No components defined in payload for guestbook/users, running without events`);
   }
 } catch (e) {
   if (hasComponents) {
     // Components dikonfigurasi tapi engine gagal load — ini error, bukan optional
-    console.error(`CRITICAL: Component engine failed to load for guestbook/visitors but components are configured:`, e.message);
+    console.error(`CRITICAL: Component engine failed to load for guestbook/users but components are configured:`, e.message);
     throw e;
   }
   // Jika tidak ada components, silent skip wajar
-  console.log(`No component engine required for guestbook/visitors, running without events`);
+  console.log(`No component engine required for guestbook/users, running without events`);
 }
 
 /**
- * Visitors Submodule - Auto-generated on 2026-05-09 15:10:25
+ * Users Submodule - Auto-generated on 2026-05-09 14:59:22
  *
- * Endpoints untuk visitors dengan actions: datatables, create, update, delete, first, lookup, read
- * Table: visitors
- * Fields: 9 fields
+ * Endpoints untuk users dengan actions: datatables, create, update, delete, first, lookup, read
+ * Table: users
+ * Fields: 7 fields
  * Database: PostgreSQL
  */
 
@@ -78,7 +78,7 @@ router.use((req, res, next) => {
           error: 'Missing payload',
           message: 'Payload cannot be empty',
           timestamp: new Date().toISOString(),
-          endpoint: '/api/guestbook/visitors' + req.path
+          endpoint: '/api/guestbook/users' + req.path
         });
       }
 
@@ -134,7 +134,7 @@ router.use((req, res, next) => {
         // Filter field yang memiliki autoGenerate dari required check
         const autoGenerateFields = ["id"];
 
-        const requiredFields = ['visitor_code']
+        const requiredFields = ['name']
           .filter(field => !autoGenerateFields.includes(field));
 
         const missingFields = requiredFields.filter(field => !req.body[field] || req.body[field] === '');
@@ -177,10 +177,10 @@ router.use((req, res, next) => {
 });
 
 
-// POST /api/guestbook/visitors/datatables - Data untuk DataTables
+// POST /api/guestbook/users/datatables - Data untuk DataTables
 router.post('/datatables', async (req, res) => {
   try {
-    // req.log.debug('Request body visitors/datatables:', JSON.stringify(req.body, null, 2));
+    // req.log.debug('Request body users/datatables:', JSON.stringify(req.body, null, 2));
 
     // Extract parameters dari request
     const options = {
@@ -248,7 +248,7 @@ router.post('/datatables', async (req, res) => {
     }
 
     // Gunakan model untuk mendapatkan data
-    const result = await visitorsModel.getDatatables(options);
+    const result = await usersModel.getDatatables(options);
 
     // Menambahkan nomor baris untuk DataTables jika diperlukan
     if (result.data && Array.isArray(result.data)) {
@@ -261,7 +261,7 @@ router.post('/datatables', async (req, res) => {
     // Add metadata untuk debugging (development only)
     if (process.env.NODE_ENV === 'development') {
       result._metadata = {
-        endpoint: 'visitors',
+        endpoint: 'users',
         options: options,
         timestamp: new Date().toISOString()
       };
@@ -269,12 +269,12 @@ router.post('/datatables', async (req, res) => {
 
     return res.json(result);
   } catch (error) {
-    console.error('Error in visitors datatables:', error);
+    console.error('Error in users datatables:', error);
     const statusCode = error.statusCode || 500;
     return res.status(statusCode).json({
       success: false,
       error: statusCode === 400 ? 'Bad Request' : 'Internal Server Error',
-      message: statusCode === 400 ? error.message : 'An error occurred while fetching visitors data',
+      message: statusCode === 400 ? error.message : 'An error occurred while fetching users data',
       details: process.env.NODE_ENV === 'development' ? error.message : undefined,
       timestamp: new Date().toISOString()
     });
@@ -282,10 +282,10 @@ router.post('/datatables', async (req, res) => {
 });
 
 
-// POST /api/guestbook/visitors/create - Menambahkan data visitors baru
+// POST /api/guestbook/users/create - Menambahkan data users baru
 router.post('/create', async (req, res) => {
   try {
-    // req.log.debug('Request body visitors/create:', JSON.stringify(req.body, null, 2));
+    // req.log.debug('Request body users/create:', JSON.stringify(req.body, null, 2));
 
     // Validasi payload
     if (!req.body || Object.keys(req.body).length === 0) {
@@ -301,8 +301,8 @@ router.post('/create', async (req, res) => {
     const correlationId = req.headers['x-correlation-id'] || null;
 
     // Validasi data dengan model jika tersedia
-    if (typeof visitorsModel.validateData === 'function') {
-      const validation = await visitorsModel.validateData(req.body, 'insert');
+    if (typeof usersModel.validateData === 'function') {
+      const validation = await usersModel.validateData(req.body, 'insert');
       if (!validation.isValid) {
         return res.status(400).json({
           success: false,
@@ -332,7 +332,7 @@ router.post('/create', async (req, res) => {
         const eventContext = {
           componentEngine: componentEngine,
           ContextBuilder: ContextBuilder,
-          tableName: 'visitors',
+          tableName: 'users',
           additionalContext: {
             user_id: req.headers['user-id'] || req.headers['x-user-id'] || 'system',
             options: req.bodyOptions || {},
@@ -340,7 +340,7 @@ router.post('/create', async (req, res) => {
           }
         };
 
-        responseData = await visitorsModel.addData(req.body, eventContext);
+        responseData = await usersModel.addData(req.body, eventContext);
         newData = responseData;
 
         console.log('[INTEGRATED TRANSACTION] INSERT completed successfully with events');
@@ -351,7 +351,7 @@ router.post('/create', async (req, res) => {
     } else {
       // Fallback: gunakan mode lama tanpa events (tetap propagasi requestId untuk Live Sync)
       try {
-        responseData = await visitorsModel.addData(req.body, { additionalContext: { requestId: req.id || null } });
+        responseData = await usersModel.addData(req.body, { additionalContext: { requestId: req.id || null } });
         newData = responseData;
         console.log('[FALLBACK] INSERT completed without events');
       } catch (error) {
@@ -361,17 +361,17 @@ router.post('/create', async (req, res) => {
     }
 
     // Log successful operation
-    console.log(`visitors data added successfully: ${responseData.id || 'new record'}`);
+    console.log(`users data added successfully: ${responseData.id || 'new record'}`);
 
     // Kirim response
     return res.status(201).json({
       success: true,
-      message: 'visitors data successfully added',
+      message: 'users data successfully added',
       data: responseData,
       timestamp: new Date().toISOString()
     });
   } catch (error) {
-    console.error('Error saat menambahkan data visitors:', error);
+    console.error('Error saat menambahkan data users:', error);
 
     // Handle specific error types
     if (error.code === '23505') { // PostgreSQL unique violation
@@ -395,7 +395,7 @@ router.post('/create', async (req, res) => {
     return res.status(500).json({
       success: false,
       error: 'Internal Server Error',
-      message: 'An error occurred while adding visitors data',
+      message: 'An error occurred while adding users data',
       details: process.env.NODE_ENV === 'development' ? error.message : undefined,
       timestamp: new Date().toISOString()
     });
@@ -403,10 +403,10 @@ router.post('/create', async (req, res) => {
 });
 
 
-// POST /api/guestbook/visitors/update - Mengupdate data visitors
+// POST /api/guestbook/users/update - Mengupdate data users
 router.post('/update', async (req, res) => {
   try {
-    // req.log.debug('Request body visitors/update:', JSON.stringify(req.body, null, 2));
+    // req.log.debug('Request body users/update:', JSON.stringify(req.body, null, 2));
 
     // Validasi payload
     if (!req.body || Object.keys(req.body).length === 0) {
@@ -437,8 +437,8 @@ router.post('/update', async (req, res) => {
     const isValidUUID = primaryKey === 'id' && uuidRegex.test(req.body[primaryKey]);
 
     // Validasi data dengan model jika tersedia
-    if (typeof visitorsModel.validateData === 'function') {
-      const validation = await visitorsModel.validateData(req.body, 'update');
+    if (typeof usersModel.validateData === 'function') {
+      const validation = await usersModel.validateData(req.body, 'update');
       if (!validation.isValid) {
         return res.status(400).json({
           success: false,
@@ -468,7 +468,7 @@ router.post('/update', async (req, res) => {
         const eventContext = {
           componentEngine: componentEngine,
           ContextBuilder: ContextBuilder,
-          tableName: 'visitors',
+          tableName: 'users',
           additionalContext: {
             user_id: req.headers['user-id'] || req.headers['x-user-id'] || 'system',
             options: req.bodyOptions || {},
@@ -476,7 +476,7 @@ router.post('/update', async (req, res) => {
           }
         };
 
-        responseData = await visitorsModel.updateData(req.body, eventContext);
+        responseData = await usersModel.updateData(req.body, eventContext);
         newData = responseData;
 
         console.log('[INTEGRATED TRANSACTION] UPDATE completed successfully with events');
@@ -487,7 +487,7 @@ router.post('/update', async (req, res) => {
     } else {
       // Fallback: gunakan mode lama tanpa events (tetap propagasi requestId untuk Live Sync)
       try {
-        responseData = await visitorsModel.updateData(req.body, { additionalContext: { requestId: req.id || null } });
+        responseData = await usersModel.updateData(req.body, { additionalContext: { requestId: req.id || null } });
         newData = responseData;
         console.log('[FALLBACK] UPDATE completed without events');
       } catch (error) {
@@ -497,24 +497,24 @@ router.post('/update', async (req, res) => {
     }
 
     // Log successful operation
-    console.log(`visitors data updated successfully: ${primaryKey}=${req.body[primaryKey]}`);
+    console.log(`users data updated successfully: ${primaryKey}=${req.body[primaryKey]}`);
 
     // Kirim response
     return res.status(200).json({
       success: true,
-      message: 'visitors data successfully updated',
+      message: 'users data successfully updated',
       data: responseData,
       timestamp: new Date().toISOString()
     });
   } catch (error) {
-    console.error('Error saat mengupdate data visitors:', error);
+    console.error('Error saat mengupdate data users:', error);
 
     // Handle khusus untuk error "Data tidak ditemukan"
     if (error.message === 'Data tidak ditemukan' || error.message.includes('not found')) {
       return res.status(404).json({
         success: false,
         error: 'Data not found',
-        message: 'visitors data not found',
+        message: 'users data not found',
         timestamp: new Date().toISOString()
       });
     }
@@ -532,7 +532,7 @@ router.post('/update', async (req, res) => {
     return res.status(500).json({
       success: false,
       error: 'Internal Server Error',
-      message: 'An error occurred while updating visitors data',
+      message: 'An error occurred while updating users data',
       details: process.env.NODE_ENV === 'development' ? error.message : undefined,
       timestamp: new Date().toISOString()
     });
@@ -540,10 +540,10 @@ router.post('/update', async (req, res) => {
 });
 
 
-// POST /api/guestbook/visitors/delete - Menghapus data visitors
+// POST /api/guestbook/users/delete - Menghapus data users
 router.post('/delete', async (req, res) => {
   try {
-    // req.log.debug('Request body visitors/delete:', JSON.stringify(req.body, null, 2));
+    // req.log.debug('Request body users/delete:', JSON.stringify(req.body, null, 2));
 
     // Validasi request body
     if (!req.body || Object.keys(req.body).length === 0) {
@@ -597,7 +597,7 @@ router.post('/delete', async (req, res) => {
     if (req.body.where && Array.isArray(req.body.where) && req.body.where.length > 0) {
       const firstCondition = req.body.where[0];
       try {
-        const existingData = await visitorsModel.getData({
+        const existingData = await usersModel.getData({
           where: [{ key: firstCondition.key, value: firstCondition.value }]
         });
 
@@ -605,7 +605,7 @@ router.post('/delete', async (req, res) => {
           return res.status(404).json({
             success: false,
             error: 'Data not found',
-            message: 'visitors data not found',
+            message: 'users data not found',
             timestamp: new Date().toISOString()
           });
         }
@@ -633,7 +633,7 @@ router.post('/delete', async (req, res) => {
         const eventContext = {
           componentEngine: componentEngine,
           ContextBuilder: ContextBuilder,
-          tableName: 'visitors',
+          tableName: 'users',
           additionalContext: {
             user_id: req.headers['user-id'] || req.headers['x-user-id'] || 'system',
             options: req.bodyOptions || {},
@@ -641,7 +641,7 @@ router.post('/delete', async (req, res) => {
           }
         };
 
-        responseData = await visitorsModel.deleteData(req.body, eventContext);
+        responseData = await usersModel.deleteData(req.body, eventContext);
 
         console.log('[INTEGRATED TRANSACTION] DELETE completed successfully with events');
       } catch (error) {
@@ -651,7 +651,7 @@ router.post('/delete', async (req, res) => {
     } else {
       // Fallback: gunakan mode lama tanpa events (tetap propagasi requestId untuk Live Sync)
       try {
-        responseData = await visitorsModel.deleteData(req.body, { additionalContext: { requestId: req.id || null } });
+        responseData = await usersModel.deleteData(req.body, { additionalContext: { requestId: req.id || null } });
         console.log('[FALLBACK] DELETE completed without events');
       } catch (error) {
         console.error('[FALLBACK] DELETE failed:', error.message);
@@ -660,14 +660,14 @@ router.post('/delete', async (req, res) => {
     }
 
     // Log successful operation
-    console.log(`visitors data deleted successfully`);
+    console.log(`users data deleted successfully`);
 
     return res.json({
       ...responseData,
       timestamp: new Date().toISOString()
     });
   } catch (error) {
-    console.error('Error saat menghapus data visitors:', error);
+    console.error('Error saat menghapus data users:', error);
 
     // Handle foreign key constraint errors
     if (error.code === '23503') { // PostgreSQL foreign key violation
@@ -682,7 +682,7 @@ router.post('/delete', async (req, res) => {
     return res.status(500).json({
       success: false,
       error: 'Internal Server Error',
-      message: 'An error occurred while deleting visitors data',
+      message: 'An error occurred while deleting users data',
       details: process.env.NODE_ENV === 'development' ? error.message : undefined,
       timestamp: new Date().toISOString()
     });
@@ -690,10 +690,10 @@ router.post('/delete', async (req, res) => {
 });
 
 
-// POST /api/guestbook/visitors/first - Mendapatkan data visitors berdasarkan kriteria
+// POST /api/guestbook/users/first - Mendapatkan data users berdasarkan kriteria
 router.post('/first', async (req, res) => {
   try {
-    // req.log.debug('Request body visitors/first:', JSON.stringify(req.body, null, 2));
+    // req.log.debug('Request body users/first:', JSON.stringify(req.body, null, 2));
 
     // Validasi request body
     if (!req.body || Object.keys(req.body).length === 0) {
@@ -748,7 +748,7 @@ router.post('/first', async (req, res) => {
     }
 
     // Validasi where.key ada di validFields
-    const validFields = ["id","visitor_code","name","phone","email","company","identity_number","created_at","updated_at"];
+    const validFields = ["id","name","email","password","role","created_at","updated_at"];
     if (!validFields.includes(req.body.where.key)) {
       return res.status(400).json({
         success: false,
@@ -779,12 +779,12 @@ router.post('/first', async (req, res) => {
       where: [{ key: req.body.where.key, value: req.body.where.value }],
       select: req.body.select
     };
-    const result = await visitorsModel.getData(getPayload);
+    const result = await usersModel.getData(getPayload);
 
     // Add metadata untuk debugging (development only)
     if (process.env.NODE_ENV === 'development' && result.success) {
       result._metadata = {
-        endpoint: 'visitors',
+        endpoint: 'users',
         query: req.body,
         resultCount: result.data ? result.data.length : 0,
         timestamp: new Date().toISOString()
@@ -796,11 +796,11 @@ router.post('/first', async (req, res) => {
       timestamp: new Date().toISOString()
     });
   } catch (error) {
-    console.error('Error saat mendapatkan data visitors:', error);
+    console.error('Error saat mendapatkan data users:', error);
     return res.status(500).json({
       success: false,
       error: 'Internal Server Error',
-      message: 'An error occurred while fetching visitors data',
+      message: 'An error occurred while fetching users data',
       details: process.env.NODE_ENV === 'development' ? error.message : undefined,
       timestamp: new Date().toISOString()
     });
@@ -808,7 +808,7 @@ router.post('/first', async (req, res) => {
 });
 
 
-// GET /api/guestbook/visitors/lookup - Pencarian visitors untuk dropdown (dynamic)
+// GET /api/guestbook/users/lookup - Pencarian users untuk dropdown (dynamic)
 router.get('/lookup', async (req, res) => {
   try {
     // Validasi X-Request-Mode header
@@ -850,10 +850,10 @@ router.get('/lookup', async (req, res) => {
       });
     }
 
-    console.log(`visitors lookup request: search=${search}, filters=`, extraFilters);
+    console.log(`users lookup request: search=${search}, filters=`, extraFilters);
 
     // Gunakan model untuk lookup data dengan filters tambahan
-    const list = await visitorsModel.getLookupDataDynamic(search, extraFilters);
+    const list = await usersModel.getLookupDataDynamic(search, extraFilters);
 
     console.log(`Lookup results: ${list.length} records found`);
     return res.json({
@@ -864,18 +864,18 @@ router.get('/lookup', async (req, res) => {
       timestamp: new Date().toISOString()
     });
   } catch (error) {
-    console.error('Error in visitors lookup:', error);
+    console.error('Error in users lookup:', error);
     return res.status(500).json({
       success: false,
       error: 'Internal Server Error',
-      message: 'An error occurred while looking up visitors data',
+      message: 'An error occurred while looking up users data',
       details: process.env.NODE_ENV === 'development' ? error.message : undefined,
       timestamp: new Date().toISOString()
     });
   }
 });
 
-// POST /api/guestbook/visitors/lookup - Mendapatkan data visitors untuk lookup dengan filtering
+// POST /api/guestbook/users/lookup - Mendapatkan data users untuk lookup dengan filtering
 router.post('/lookup', async (req, res) => {
   try {
     // Validasi X-Request-Mode header
@@ -895,7 +895,7 @@ router.post('/lookup', async (req, res) => {
     // Validasi payload
     if (!req.body) {
       // Support untuk fieldNameLookup config
-      const lookupConfig = {"idField":"id","textField":"visitor_code || ' - ' || name AS display_text","hasCustomText":true,"searchFields":["visitor_code","name"]};
+      const lookupConfig = {"idField":"id","textField":"name || ' - ' || email AS display_text","hasCustomText":true,"searchFields":["name","email"]};
       const defaultSelect = lookupConfig && lookupConfig.hasCustomText
         ? ["id", lookupConfig.textField]
         : ["id", "name"];
@@ -906,7 +906,7 @@ router.post('/lookup', async (req, res) => {
         message: 'Payload cannot be empty',
         example: {
           "selected_tag": "optional-id-if-needed",
-          "where": [{ "key": "visitor_code", "value": "AP2506-01" }],
+          "where": [{ "key": "name", "value": "AP2506-01" }],
           "select": defaultSelect
         },
         example_sql_expression: {
@@ -926,13 +926,13 @@ router.post('/lookup', async (req, res) => {
               { "key": "name", "operator": "like", "value": "%system%", "sensitive": false }
             ]
           },
-          "select": ["id", "visitor_code", "name"]
+          "select": ["id", "name"]
         },
         example_with_ordering: {
           "select": ["id", "name"],
           "sort_columns": [
             {
-              "column": "visitor_code",
+              "column": "name",
               "direction": "ASC"
             },
             {
@@ -945,7 +945,7 @@ router.post('/lookup', async (req, res) => {
       });
     }
 
-    // req.log.debug('Request body visitors/lookup:', JSON.stringify(req.body, null, 2));
+    // req.log.debug('Request body users/lookup:', JSON.stringify(req.body, null, 2));
 
     // Cek apakah ada where clause (format baru) atau selected_tag (format lama)
     if (req.body.where) {
@@ -960,7 +960,7 @@ router.post('/lookup', async (req, res) => {
           message: 'Invalid where format',
           example: {
             "where": [
-              { "key": "visitor_code", "value": "AP2506-01" }
+              { "key": "name", "value": "AP2506-01" }
             ],
             "select": ["id", "name"]
           },
@@ -972,7 +972,7 @@ router.post('/lookup', async (req, res) => {
                 { "key": "name", "operator": "like", "value": "%system%", "sensitive": false }
               ]
             },
-            "select": ["id", "visitor_code", "name"]
+            "select": ["id", "name"]
           },
           timestamp: new Date().toISOString()
         });
@@ -980,7 +980,7 @@ router.post('/lookup', async (req, res) => {
 
       // Validasi select fields jika ada (support SQL expressions)
       if (req.body.select && Array.isArray(req.body.select)) {
-        const validFields = ["id","visitor_code","name","phone","email","company","identity_number","created_at","updated_at"];
+        const validFields = ["id","name","email","password","role","created_at","updated_at"];
         const invalidFields = [];
 
         // Check setiap field dalam select
@@ -1019,7 +1019,7 @@ router.post('/lookup', async (req, res) => {
       }
 
       // Gunakan method getLookupDataWithFilter
-      const list = await visitorsModel.getLookupDataWithFilter(req.body);
+      const list = await usersModel.getLookupDataWithFilter(req.body);
 
       console.log(`Lookup with filter results: ${list.length} records found`);
       return res.json({
@@ -1035,7 +1035,7 @@ router.post('/lookup', async (req, res) => {
       console.log('Using legacy format with selected_tag or select-only request');
 
       const selectedTag = req.body.selected_tag || '';
-      console.log(`visitors static lookup request with selected_tag: ${selectedTag}`);
+      console.log(`users static lookup request with selected_tag: ${selectedTag}`);
 
       // Jika ada field select atau sort_columns, gunakan getLookupDataWithFilter dengan body yang dimodifikasi
       if ((req.body.select && Array.isArray(req.body.select)) || (req.body.sort_columns && Array.isArray(req.body.sort_columns))) {
@@ -1047,7 +1047,7 @@ router.post('/lookup', async (req, res) => {
           where: [] // Empty where untuk mengambil semua data
         };
 
-        const list = await visitorsModel.getLookupDataWithFilter(modifiedBody);
+        const list = await usersModel.getLookupDataWithFilter(modifiedBody);
 
         console.log(`Static lookup with select/order results: ${list.length} records found`);
         return res.json({
@@ -1060,7 +1060,7 @@ router.post('/lookup', async (req, res) => {
         });
       } else {
         // Gunakan model untuk mendapatkan data dengan method lama
-        const list = await visitorsModel.getStaticLookupData(selectedTag);
+        const list = await usersModel.getStaticLookupData(selectedTag);
 
         console.log(`Static lookup results: ${list.length} records found`);
         return res.json({
@@ -1074,11 +1074,11 @@ router.post('/lookup', async (req, res) => {
     }
 
   } catch (error) {
-    console.error('Error in visitors static lookup:', error);
+    console.error('Error in users static lookup:', error);
     return res.status(500).json({
       success: false,
       error: 'Internal Server Error',
-      message: 'An error occurred while fetching visitors data',
+      message: 'An error occurred while fetching users data',
       details: process.env.NODE_ENV === 'development' ? error.message : undefined,
       timestamp: new Date().toISOString()
     });
@@ -1086,10 +1086,10 @@ router.post('/lookup', async (req, res) => {
 });
 
 
-// POST /api/guestbook/visitors/read - Manual pagination endpoint
+// POST /api/guestbook/users/read - Manual pagination endpoint
 router.post('/read', async (req, res) => {
   try {
-    // req.log.debug('Request body visitors/read:', JSON.stringify(req.body, null, 2));
+    // req.log.debug('Request body users/read:', JSON.stringify(req.body, null, 2));
 
     // Validasi request body
     if (!req.body || Object.keys(req.body).length === 0) {
@@ -1127,7 +1127,7 @@ router.post('/read', async (req, res) => {
     }
 
     // Proses parameter select untuk kolom selektif
-    const validFields = ["id","visitor_code","name","phone","email","company","identity_number","created_at","updated_at"];
+    const validFields = ["id","name","email","password","role","created_at","updated_at"];
     let select = null;
     if (req.body.select && Array.isArray(req.body.select)) {
       const invalidFields = req.body.select.filter(field => !validFields.includes(field));
@@ -1205,7 +1205,7 @@ router.post('/read', async (req, res) => {
     }
 
     // Gunakan model untuk mendapatkan data list
-    const result = await visitorsModel.getList(options);
+    const result = await usersModel.getList(options);
 
     // Format response berdasarkan mode
     if (paginate) {
@@ -1235,12 +1235,12 @@ router.post('/read', async (req, res) => {
     }
 
   } catch (error) {
-    console.error('Error in visitors list:', error);
+    console.error('Error in users list:', error);
     const statusCode = error.statusCode || 500;
     return res.status(statusCode).json({
       success: false,
       error: statusCode === 400 ? 'Bad Request' : 'Internal Server Error',
-      message: statusCode === 400 ? error.message : 'An error occurred while fetching visitors list data',
+      message: statusCode === 400 ? error.message : 'An error occurred while fetching users list data',
       details: process.env.NODE_ENV === 'development' ? error.message : undefined,
       timestamp: new Date().toISOString()
     });
@@ -1254,22 +1254,22 @@ router.get('/info', async (req, res) => {
   try {
     const actions = {"datatables":true,"read":true,"first":true,"create":true,"update":true,"delete":true,"lookup":true,"export":false,"import":false,"workflow":false,"info":true};
 
-    const modelInfo = await visitorsModel.getModelInfo(actions);
+    const modelInfo = await usersModel.getModelInfo(actions);
 
     res.json({
       success: true,
-      endpoint: 'visitors',
+      endpoint: 'users',
       module: 'guestbook',
       table: modelInfo.table,
       fields: modelInfo.fields,
       querySources: modelInfo.querySources,
       actions: actions,
       databaseType: 'postgres',
-      generated: '2026-05-09 15:10:25',
+      generated: '2026-05-09 14:59:22',
       timestamp: new Date().toISOString()
     });
   } catch (error) {
-    console.error('Error in visitors info:', error);
+    console.error('Error in users info:', error);
     res.status(500).json({
       success: false,
       error: 'Internal Server Error',
@@ -1283,7 +1283,7 @@ router.get('/info', async (req, res) => {
 router.get('/health', (req, res) => {
   res.json({
     status: 'ok',
-    endpoint: 'visitors',
+    endpoint: 'users',
     timestamp: new Date().toISOString()
   });
 });

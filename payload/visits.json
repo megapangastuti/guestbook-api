@@ -177,6 +177,9 @@
       "direction": "DESC"
     }
   },
+  "datatablesQuery": "file:query/visits-datatables.sql",
+
+  "datatablesWhere": ["visit_number", "visitor_code", "visitor_name", "company", "host_name", "purpose", "status", "receptionist_name", "all"],
 
   "action": {
     "datatables": true,

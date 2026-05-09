@@ -1,7 +1,8 @@
-SELECT a.id,
-       a.name,
-       a.email,
-       a.role,
-       a.created_at,
-       a.updated_at
-FROM users a
+SELECT
+    u.id,
+    u.name,
+    u.email,
+    u.role,
+    u.created_at,
+    u.updated_at
+FROM users u;

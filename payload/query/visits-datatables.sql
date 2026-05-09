@@ -34,28 +34,4 @@ JOIN visitors vis
     ON vis.id = vt.visitor_id
 
 LEFT JOIN users u
-    ON u.id = vt.created_by
-
-WHERE 1 = 1
-
-AND (
-    :search IS NULL
-
-    OR vt.visit_number ILIKE CONCAT('%', :search, '%')
-
-    OR vis.visitor_code ILIKE CONCAT('%', :search, '%')
-
-    OR vis.name ILIKE CONCAT('%', :search, '%')
-
-    OR vis.company ILIKE CONCAT('%', :search, '%')
-
-    OR vt.host_name ILIKE CONCAT('%', :search, '%')
-
-    OR vt.purpose ILIKE CONCAT('%', :search, '%')
-
-    OR vt.status::TEXT ILIKE CONCAT('%', :search, '%')
-
-    OR u.name ILIKE CONCAT('%', :search, '%')
-)
-
-ORDER BY vt.check_in_time DESC;
+    ON u.id = vt.created_by;

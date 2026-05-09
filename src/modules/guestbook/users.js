@@ -50,7 +50,7 @@ try {
 }
 
 /**
- * Users Submodule - Auto-generated on 2026-05-09 08:20:15
+ * Users Submodule - Auto-generated on 2026-05-09 15:17:08
  *
  * Endpoints untuk users dengan actions: datatables, create, update, delete, first, lookup, read
  * Table: users
@@ -895,7 +895,7 @@ router.post('/lookup', async (req, res) => {
     // Validasi payload
     if (!req.body) {
       // Support untuk fieldNameLookup config
-      const lookupConfig = {"idField":"id","textField":"name||' - '||email as display_text","hasCustomText":true,"searchFields":["name","email"]};
+      const lookupConfig = {"idField":"id","textField":"name || ' - ' || email AS display_text","hasCustomText":true,"searchFields":["name","email"]};
       const defaultSelect = lookupConfig && lookupConfig.hasCustomText
         ? ["id", lookupConfig.textField]
         : ["id", "name"];
@@ -1265,7 +1265,7 @@ router.get('/info', async (req, res) => {
       querySources: modelInfo.querySources,
       actions: actions,
       databaseType: 'postgres',
-      generated: '2026-05-09 08:20:15',
+      generated: '2026-05-09 15:17:08',
       timestamp: new Date().toISOString()
     });
   } catch (error) {

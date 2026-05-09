@@ -118,6 +118,9 @@
       "direction": "DESC"
     }
   },
+  "datatablesQuery": "file:query/visitors-datatables.sql",
+
+  "datatablesWhere": ["visitor_code", "name", "phone", "email", "company", "identity_number", "all"],
 
   "action": {
     "datatables": true,

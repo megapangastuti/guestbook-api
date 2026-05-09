@@ -17,7 +17,7 @@ try {
     // Load component configuration dari payload yang sedang digunakan
     const componentConfig = {
       tableName: 'visits',
-      fieldName: ["id","visit_number","visitor_id","visitor_code","visitor_name","company","host_name","purpose","check_in_time","check_out_time","status","created_by","receptionist_name","notes","created_at","updated_at"],
+      fieldName: ["id","visit_number","visitor_id","visitor_master_id","visitor_code","visitor_name","company","host_name","purpose","check_in_time","check_out_time","status","created_by","receptionist_id","receptionist_name","notes","created_at","updated_at"],
       exportQuery: null,
       columnFormats: null,
       fieldLabels: null,
@@ -50,11 +50,11 @@ try {
 }
 
 /**
- * Visits Submodule - Auto-generated on 2026-05-09 08:21:05
+ * Visits Submodule - Auto-generated on 2026-05-09 15:10:19
  *
  * Endpoints untuk visits dengan actions: datatables, create, update, delete, first, lookup, read, workflow
  * Table: visits
- * Fields: 16 fields
+ * Fields: 18 fields
  * Database: PostgreSQL
  */
 
@@ -748,7 +748,7 @@ router.post('/first', async (req, res) => {
     }
 
     // Validasi where.key ada di validFields
-    const validFields = ["id","visit_number","visitor_id","visitor_code","visitor_name","company","host_name","purpose","check_in_time","check_out_time","status","created_by","receptionist_name","notes","created_at","updated_at"];
+    const validFields = ["id","visit_number","visitor_id","visitor_master_id","visitor_code","visitor_name","company","host_name","purpose","check_in_time","check_out_time","status","created_by","receptionist_id","receptionist_name","notes","created_at","updated_at"];
     if (!validFields.includes(req.body.where.key)) {
       return res.status(400).json({
         success: false,
@@ -895,7 +895,7 @@ router.post('/lookup', async (req, res) => {
     // Validasi payload
     if (!req.body) {
       // Support untuk fieldNameLookup config
-      const lookupConfig = {"idField":"id","textField":"visit_number","hasCustomText":false,"searchFields":["visit_number"]};
+      const lookupConfig = {"idField":"id","textField":"visit_number AS display_text","hasCustomText":true,"searchFields":["visit_number"]};
       const defaultSelect = lookupConfig && lookupConfig.hasCustomText
         ? ["id", lookupConfig.textField]
         : ["id", "visit_number"];
@@ -980,7 +980,7 @@ router.post('/lookup', async (req, res) => {
 
       // Validasi select fields jika ada (support SQL expressions)
       if (req.body.select && Array.isArray(req.body.select)) {
-        const validFields = ["id","visit_number","visitor_id","visitor_code","visitor_name","company","host_name","purpose","check_in_time","check_out_time","status","created_by","receptionist_name","notes","created_at","updated_at"];
+        const validFields = ["id","visit_number","visitor_id","visitor_master_id","visitor_code","visitor_name","company","host_name","purpose","check_in_time","check_out_time","status","created_by","receptionist_id","receptionist_name","notes","created_at","updated_at"];
         const invalidFields = [];
 
         // Check setiap field dalam select
@@ -1127,7 +1127,7 @@ router.post('/read', async (req, res) => {
     }
 
     // Proses parameter select untuk kolom selektif
-    const validFields = ["id","visit_number","visitor_id","visitor_code","visitor_name","company","host_name","purpose","check_in_time","check_out_time","status","created_by","receptionist_name","notes","created_at","updated_at"];
+    const validFields = ["id","visit_number","visitor_id","visitor_master_id","visitor_code","visitor_name","company","host_name","purpose","check_in_time","check_out_time","status","created_by","receptionist_id","receptionist_name","notes","created_at","updated_at"];
     let select = null;
     if (req.body.select && Array.isArray(req.body.select)) {
       const invalidFields = req.body.select.filter(field => !validFields.includes(field));
@@ -1433,7 +1433,7 @@ router.get('/info', async (req, res) => {
       querySources: modelInfo.querySources,
       actions: actions,
       databaseType: 'postgres',
-      generated: '2026-05-09 08:21:05',
+      generated: '2026-05-09 15:10:19',
       timestamp: new Date().toISOString()
     });
   } catch (error) {

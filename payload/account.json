@@ -1,0 +1,20 @@
+{
+  "processor": [
+    {
+      "name": "login",
+      "method": "POST",
+      "description": "Authenticate a user by email and password",
+      "handler": "file:processors/account-login.js"
+    },
+    {
+      "name": "register",
+      "method": "POST",
+      "description": "Register a new guestbook user",
+      "handler": "file:processors/account-register.js"
+    }
+  ],
+  "metadata": {
+    "module": "guestbook",
+    "description": "Authentication endpoints for login and register"
+  }
+}

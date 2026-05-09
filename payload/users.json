@@ -1,9 +1,7 @@
 {
   "tableName": "users",
   "primaryKey": "id",
-
   "fieldName": ["id", "name", "email", "password", "role", "created_at", "updated_at"],
-
   "fieldValidation": [
     {
       "name": "id",
@@ -86,17 +84,15 @@
 
   "datatables": {
     "query": "file:query/users-datatables.sql",
-
     "searchable": ["name", "email", "role"],
-
     "sortable": ["name", "email", "role", "created_at"],
-
     "defaultSort": {
       "field": "created_at",
       "direction": "DESC"
     }
   },
-
+  "datatablesQuery": "file:query/users-datatables.sql",
+  "datatablesWhere": ["name", "email", "role", "all"],
   "action": {
     "datatables": true,
 

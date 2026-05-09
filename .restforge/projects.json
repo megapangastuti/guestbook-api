@@ -7,7 +7,9 @@
         "users",
         "visitors",
         "visits",
-        "samples"
+        "samples",
+        "auto",
+        "account"
       ]
     }
   }

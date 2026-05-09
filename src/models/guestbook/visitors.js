@@ -5,7 +5,7 @@ const path = require('path');
 // AdvancedFilterHelper dihapus — semua filtering ditangani oleh buildObjectFilterClause dan buildComplexWhereClause
 
 /**
- * Visitors Model - Auto-generated on 2026-05-09 08:20:52
+ * Visitors Model - Auto-generated on 2026-05-09 15:10:25
  *
  * Model untuk visitors yang mewarisi fungsi-fungsi dari BaseModel
  * Table: visitors
@@ -57,8 +57,8 @@ class VisitorsModel extends BaseModel {
         type: 'uuid',
         constraints: {
             "primaryKey": true,
-            "autoGenerate": true,
-            "required": true
+            "required": true,
+            "autoGenerate": true
       }
       },
       'visitor_code': {
@@ -112,6 +112,23 @@ class VisitorsModel extends BaseModel {
             "maxLength": 100,
             "trim": true
       }
+      },
+      'created_at': {
+        type: 'timestamp',
+        constraints: {
+            "required": true,
+            "default": "CURRENT_TIMESTAMP",
+            "readonly": true
+      }
+      },
+      'updated_at': {
+        type: 'timestamp',
+        constraints: {
+            "required": true,
+            "default": "CURRENT_TIMESTAMP",
+            "readonly": true,
+            "autoUpdate": true
+      }
       }
     };
 
@@ -123,7 +140,7 @@ class VisitorsModel extends BaseModel {
       viewName: 'visitors',
       fieldCount: 9,
       databaseType: 'postgres',
-      generated: '2026-05-09 08:20:52',
+      generated: '2026-05-09 15:10:25',
       features: ["custom_where"]
     };
   }
@@ -532,7 +549,7 @@ class VisitorsModel extends BaseModel {
   async getLookupDataDynamic(search, extraFilters = {}) {
     try {
       // Gunakan custom lookup config jika ada, fallback ke textFields detection
-      const lookupConfig = {"idField":"id","textField":"visitor_code||' - '||name as display_text","hasCustomText":true,"searchFields":["visitor_code","name"]};
+      const lookupConfig = {"idField":"id","textField":"visitor_code || ' - ' || name AS display_text","hasCustomText":true,"searchFields":["visitor_code","name"]};
       const textFields = lookupConfig && lookupConfig.searchFields.length > 0
         ? lookupConfig.searchFields
         : ["visitor_code","name"];
