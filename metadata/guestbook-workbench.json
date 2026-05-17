@@ -271,19 +271,9 @@
           "name": "created_at",
           "type": "timestamp",
           "constraints": {
-            "required": false,
+            "required": true,
             "default": "CURRENT_TIMESTAMP",
             "readonly": true
-          }
-        },
-        {
-          "name": "updated_at",
-          "type": "timestamp",
-          "constraints": {
-            "required": false,
-            "default": "CURRENT_TIMESTAMP",
-            "readonly": true,
-            "autoUpdate": true
           }
         }
       ],
@@ -296,7 +286,7 @@
           "company": "Demo Company",
           "identity_number": "Demo identity_number",
           "created_at": "CURRENT_TIMESTAMP",
-          "updated_at": "CURRENT_TIMESTAMP"
+          "updated_at": "2026-05-09"
         },
         "update": {
           "visitor_code": "DMO001",
@@ -306,7 +296,7 @@
           "company": "Demo Company",
           "identity_number": "Demo identity_number",
           "created_at": "CURRENT_TIMESTAMP",
-          "updated_at": "CURRENT_TIMESTAMP"
+          "updated_at": "2026-05-09"
         },
         "delete": {
           "where": [

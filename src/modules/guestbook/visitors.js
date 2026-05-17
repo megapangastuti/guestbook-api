@@ -50,7 +50,7 @@ try {
 }
 
 /**
- * Visitors Submodule - Auto-generated on 2026-05-09 16:23:28
+ * Visitors Submodule - Auto-generated on 2026-05-09 16:32:05
  *
  * Endpoints untuk visitors dengan actions: datatables, create, update, delete, first, lookup, read
  * Table: visitors
@@ -1265,7 +1265,7 @@ router.get('/info', async (req, res) => {
       querySources: modelInfo.querySources,
       actions: actions,
       databaseType: 'postgres',
-      generated: '2026-05-09 16:23:28',
+      generated: '2026-05-09 16:32:05',
       timestamp: new Date().toISOString()
     });
   } catch (error) {

@@ -84,8 +84,11 @@
 
   "datatables": {
     "query": "file:query/users-datatables.sql",
+
     "searchable": ["name", "email", "role"],
+
     "sortable": ["name", "email", "role", "created_at"],
+
     "defaultSort": {
       "field": "created_at",
       "direction": "DESC"

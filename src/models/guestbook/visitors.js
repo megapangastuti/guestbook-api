@@ -5,7 +5,7 @@ const path = require('path');
 // AdvancedFilterHelper dihapus — semua filtering ditangani oleh buildObjectFilterClause dan buildComplexWhereClause
 
 /**
- * Visitors Model - Auto-generated on 2026-05-09 16:23:28
+ * Visitors Model - Auto-generated on 2026-05-09 16:32:05
  *
  * Model untuk visitors yang mewarisi fungsi-fungsi dari BaseModel
  * Table: visitors
@@ -116,18 +116,9 @@ class VisitorsModel extends BaseModel {
       'created_at': {
         type: 'timestamp',
         constraints: {
-            "required": false,
+            "required": true,
             "default": "CURRENT_TIMESTAMP",
             "readonly": true
-      }
-      },
-      'updated_at': {
-        type: 'timestamp',
-        constraints: {
-            "required": false,
-            "default": "CURRENT_TIMESTAMP",
-            "readonly": true,
-            "autoUpdate": true
       }
       }
     };
@@ -140,7 +131,7 @@ class VisitorsModel extends BaseModel {
       viewName: 'visitors',
       fieldCount: 9,
       databaseType: 'postgres',
-      generated: '2026-05-09 16:23:28',
+      generated: '2026-05-09 16:32:05',
       features: ["custom_where"]
     };
   }

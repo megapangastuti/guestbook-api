@@ -1,6 +1,6 @@
 {
   "info": {
-    "_postman_id": "rze6xnujzppopy5zyxso4",
+    "_postman_id": "vy0yqimwsvdhjqniybli",
     "name": "Guestbook - Users",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "_exporter_id": "restforge-generator"
@@ -98,7 +98,7 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"name\": \"Demo Name\",\n  \"email\": \"demo@example.com\",\n  \"password\": \"Demo password\",\n  \"role\": \"ADMIN\",\n  \"created_at\": \"CURRENT_TIMESTAMP\",\n  \"updated_at\": \"CURRENT_TIMESTAMP\"\n}",
+          "raw": "{\n  \"name\": \"Demo Name\",\n  \"email\": \"demo@example.com\",\n  \"password\": \"Demo password\",\n  \"role\": \"ADMIN\"\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -135,7 +135,7 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"name\": \"Updated Demo Name\",\n  \"email\": \"updated@example.com\",\n  \"password\": \"Demo password\",\n  \"role\": \"ADMIN\",\n  \"created_at\": \"CURRENT_TIMESTAMP\",\n  \"updated_at\": \"CURRENT_TIMESTAMP\"\n}",
+          "raw": "{\n  \"name\": \"Updated Demo Name\",\n  \"email\": \"updated@example.com\",\n  \"password\": \"Demo password\",\n  \"role\": \"ADMIN\"\n}",
           "options": {
             "raw": {
               "language": "json"

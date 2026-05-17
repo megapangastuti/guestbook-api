@@ -5,7 +5,7 @@ const path = require('path');
 // AdvancedFilterHelper dihapus — semua filtering ditangani oleh buildObjectFilterClause dan buildComplexWhereClause
 
 /**
- * Users Model - Auto-generated on 2026-05-09 15:59:30
+ * Users Model - Auto-generated on 2026-05-09 16:46:55
  *
  * Model untuk users yang mewarisi fungsi-fungsi dari BaseModel
  * Table: users
@@ -123,7 +123,7 @@ class UsersModel extends BaseModel {
       viewName: 'users',
       fieldCount: 7,
       databaseType: 'postgres',
-      generated: '2026-05-09 15:59:30',
+      generated: '2026-05-09 16:46:55',
       features: ["custom_where"]
     };
   }
@@ -851,6 +851,14 @@ class UsersModel extends BaseModel {
           let value = data[fieldName];
           const config = this.validationConfig[fieldName];
           const constraints = config.constraints || {};
+
+          if ((operation === 'insert' || operation === 'update') && constraints.readonly) {
+            if (Object.prototype.hasOwnProperty.call(data, fieldName)) {
+              result.warnings.push(`Field '${fieldName}' is readonly and was ignored`);
+              delete data[fieldName];
+            }
+            continue;
+          }
 
           // Auto-generate value jika autoGenerate dan nilai kosong.
           // String dan uuid diperlakukan sama: UUID v7 via uuid package

@@ -1,6 +1,6 @@
 {
   "info": {
-    "_postman_id": "18knv6x56c878kiw9l23v4",
+    "_postman_id": "90tfqp3ri6thuj2yh2f8tv",
     "name": "Guestbook - Visitors",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "_exporter_id": "restforge-generator"
@@ -98,7 +98,7 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"visitor_code\": \"DMO001\",\n  \"name\": \"Demo Name\",\n  \"phone\": \"+62812345678\",\n  \"email\": \"demo@example.com\",\n  \"company\": \"Demo Company\",\n  \"identity_number\": \"Demo identity_number\",\n  \"created_at\": \"CURRENT_TIMESTAMP\",\n  \"updated_at\": \"CURRENT_TIMESTAMP\"\n}",
+          "raw": "{\n  \"visitor_code\": \"DMO001\",\n  \"name\": \"Demo Name\",\n  \"phone\": \"+62812345678\",\n  \"email\": \"demo@example.com\",\n  \"company\": \"Demo Company\",\n  \"identity_number\": \"Demo identity_number\",\n  \"created_at\": \"CURRENT_TIMESTAMP\",\n  \"updated_at\": \"2026-05-09\"\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -135,7 +135,7 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"visitor_code\": \"DMO001\",\n  \"name\": \"Updated Demo Name\",\n  \"phone\": \"+62812345678\",\n  \"email\": \"updated@example.com\",\n  \"company\": \"Demo Company\",\n  \"identity_number\": \"Demo identity_number\",\n  \"created_at\": \"CURRENT_TIMESTAMP\",\n  \"updated_at\": \"CURRENT_TIMESTAMP\"\n}",
+          "raw": "{\n  \"visitor_code\": \"DMO001\",\n  \"name\": \"Updated Demo Name\",\n  \"phone\": \"+62812345678\",\n  \"email\": \"updated@example.com\",\n  \"company\": \"Demo Company\",\n  \"identity_number\": \"Demo identity_number\",\n  \"created_at\": \"CURRENT_TIMESTAMP\",\n  \"updated_at\": \"2026-05-09\"\n}",
           "options": {
             "raw": {
               "language": "json"

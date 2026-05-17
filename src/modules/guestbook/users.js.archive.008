@@ -50,7 +50,7 @@ try {
 }
 
 /**
- * Users Submodule - Auto-generated on 2026-05-09 16:46:55
+ * Users Submodule - Auto-generated on 2026-05-09 16:43:16
  *
  * Endpoints untuk users dengan actions: datatables, create, update, delete, first, lookup, read
  * Table: users
@@ -316,10 +316,6 @@ router.post('/create', async (req, res) => {
       // Gunakan sanitized data
       req.body = { ...req.body, ...validation.sanitizedData };
     }
-
-    // BaseModel manages audit timestamps. Do not pass readonly timestamp fields into INSERT.
-    delete req.body.created_at;
-    delete req.body.updated_at;
 
     // Event lifecycle variables
     let oldData = null;
@@ -1269,7 +1265,7 @@ router.get('/info', async (req, res) => {
       querySources: modelInfo.querySources,
       actions: actions,
       databaseType: 'postgres',
-      generated: '2026-05-09 16:46:55',
+      generated: '2026-05-09 16:43:16',
       timestamp: new Date().toISOString()
     });
   } catch (error) {

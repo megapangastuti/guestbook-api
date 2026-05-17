@@ -1,25 +1,25 @@
 type: collection.insomnia.rest/5.0
 name: Guestbook
 meta:
-  id: wrk_v0nluu5v8mfq048sd5im6l
-  created: 1778342370256
-  modified: 1778342370256
+  id: wrk_5vvvag2xj1pitqhjcanido
+  created: 1778345215771
+  modified: 1778345215771
 collection:
   - name: users
     meta:
-      id: fld_uhoc5cch9car3850ly60p
-      created: 1778342370256
-      modified: 1778342370256
-      sortKey: -1778342370256
+      id: fld_6mjqwnl3bvvoabwbll6d1e
+      created: 1778345215771
+      modified: 1778345215771
+      sortKey: -1778345215771
     children:
       - url: http://localhost:3000/api/guestbook/users/datatables
         name: users/datatables
         meta:
-          id: req_skdjk7a74bqz1sxtvy7jy
-          created: 1778342370256
-          modified: 1778342370256
+          id: req_av9w8ukrk0j2aata6mrwin
+          created: 1778345215771
+          modified: 1778345215771
           isPrivate: false
-          sortKey: -1778342370256
+          sortKey: -1778345215771
         method: POST
         body:
           mimeType: application/json
@@ -46,11 +46,11 @@ collection:
       - url: http://localhost:3000/api/guestbook/users/lookup
         name: users/lookup
         meta:
-          id: req_h2zqzwflsm9mar6eurife
-          created: 1778342370256
-          modified: 1778342370256
+          id: req_7nvttzp46jbseeon0cu3y
+          created: 1778345215771
+          modified: 1778345215771
           isPrivate: false
-          sortKey: -1778342369256
+          sortKey: -1778345214771
         method: POST
         body:
           mimeType: application/json
@@ -77,11 +77,11 @@ collection:
       - url: http://localhost:3000/api/guestbook/users/create
         name: users/create
         meta:
-          id: req_vpp6tqe9m7thr8tq38xqb7
-          created: 1778342370256
-          modified: 1778342370256
+          id: req_5gszy764oe97ehpx24ddp
+          created: 1778345215771
+          modified: 1778345215771
           isPrivate: false
-          sortKey: -1778342368256
+          sortKey: -1778345213771
         method: POST
         body:
           mimeType: application/json
@@ -90,9 +90,7 @@ collection:
               "name": "Demo Name",
               "email": "demo@example.com",
               "password": "Demo password",
-              "role": "ADMIN",
-              "created_at": "CURRENT_TIMESTAMP",
-              "updated_at": "CURRENT_TIMESTAMP"
+              "role": "ADMIN"
             }
         headers:
           - name: Content-Type
@@ -108,11 +106,11 @@ collection:
       - url: http://localhost:3000/api/guestbook/users/update
         name: users/update
         meta:
-          id: req_rpelu7q6bpo3jae26n0012
-          created: 1778342370256
-          modified: 1778342370256
+          id: req_7zs0aui9wugwkkfdnpilw
+          created: 1778345215771
+          modified: 1778345215771
           isPrivate: false
-          sortKey: -1778342367256
+          sortKey: -1778345212771
         method: POST
         body:
           mimeType: application/json
@@ -121,9 +119,7 @@ collection:
               "name": "Updated Demo Name",
               "email": "updated@example.com",
               "password": "Demo password",
-              "role": "ADMIN",
-              "created_at": "CURRENT_TIMESTAMP",
-              "updated_at": "CURRENT_TIMESTAMP"
+              "role": "ADMIN"
             }
         headers:
           - name: Content-Type
@@ -139,11 +135,11 @@ collection:
       - url: http://localhost:3000/api/guestbook/users/first
         name: users/first
         meta:
-          id: req_uee2wvjnubkjilaw99he8
-          created: 1778342370256
-          modified: 1778342370256
+          id: req_00gabagthy6m8en2ee17a8
+          created: 1778345215771
+          modified: 1778345215771
           isPrivate: false
-          sortKey: -1778342366256
+          sortKey: -1778345211771
         method: POST
         body:
           mimeType: application/json
@@ -177,11 +173,11 @@ collection:
       - url: http://localhost:3000/api/guestbook/users/delete
         name: users/delete
         meta:
-          id: req_o4tzfhzdcoy5kcoixnprc
-          created: 1778342370256
-          modified: 1778342370256
+          id: req_hn80v1s3dtr3fbrvk5x3s8
+          created: 1778345215771
+          modified: 1778345215771
           isPrivate: false
-          sortKey: -1778342365256
+          sortKey: -1778345210771
         method: POST
         body:
           mimeType: application/json
@@ -208,11 +204,11 @@ collection:
       - url: http://localhost:3000/api/guestbook/users/read
         name: users/read
         meta:
-          id: req_2uahn8514rk336gm7ih1h
-          created: 1778342370256
-          modified: 1778342370256
+          id: req_aoyevk0p8j9so3pm4my5
+          created: 1778345215771
+          modified: 1778345215771
           isPrivate: false
-          sortKey: -1778342364256
+          sortKey: -1778345209771
         method: POST
         body:
           mimeType: application/json
@@ -237,11 +233,11 @@ collection:
       - url: http://localhost:3000/api/guestbook/health
         name: health
         meta:
-          id: req_m07h43lwoe9zi2trgz3519
-          created: 1778342370256
-          modified: 1778342370256
+          id: req_ddiqpga6pibrxqmkdty30b
+          created: 1778345215771
+          modified: 1778345215771
           isPrivate: false
-          sortKey: -1778342363256
+          sortKey: -1778345208771
         method: GET
         body:
           mimeType: application/json
@@ -259,13 +255,13 @@ collection:
 cookieJar:
   name: Default Jar
   meta:
-    id: jar_qfst9aw75hlf7yb21s3bcd
-    created: 1778342370256
-    modified: 1778342370256
+    id: jar_ogiv2cg72ekngzp1sc1meh
+    created: 1778345215771
+    modified: 1778345215771
 environments:
   name: Base Environment
   meta:
-    id: env_v16sonhanetx4gimfdxhdo
-    created: 1778342370256
-    modified: 1778342370256
+    id: env_bqnck0uxcvt5rcjkelyxt
+    created: 1778345215771
+    modified: 1778345215771
     isPrivate: false
